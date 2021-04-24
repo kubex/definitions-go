@@ -25,17 +25,17 @@ func (g *GlobalAppID) String() string {
 }
 
 // New Create a Global App ID from your vendor and application IDs
-func New(vendorID string, applicationID string) *GlobalAppID {
+func NewID(vendorID string, applicationID string) *GlobalAppID {
 	resp := &GlobalAppID{VendorID: vendorID, AppID: applicationID}
 	return resp
 }
 
 // FromString Take a string starting with a GlobalAppID, and extract the vendor, app and remainder
-func FromString(input string) *GlobalAppID {
+func IDFromString(input string) *GlobalAppID {
 	glapid := &GlobalAppID{}
 	parts := strings.SplitN(input, "/", 3)
 	if len(parts) > 1 {
-		glapid = New(parts[0], parts[1])
+		glapid = NewID(parts[0], parts[1])
 		if len(parts) > 2 {
 			glapid.remainder = parts[2]
 		}

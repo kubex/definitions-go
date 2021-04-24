@@ -11,3 +11,7 @@ func (t *Text) Get(language string) string {
 	}
 	return t.Fallback
 }
+
+func String(text string) Text {
+	return Text{Fallback: text}
+}
