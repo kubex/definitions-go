@@ -23,6 +23,7 @@ type PermissionStatement struct {
 }
 
 type PermissionPolicy struct {
+	Uuid        string
 	Key         string
 	Name        translation.Text
 	Description translation.Text
