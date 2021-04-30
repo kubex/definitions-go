@@ -16,9 +16,14 @@ const (
 	PermissionEffectDeny  PermissionEffect = "Deny"
 )
 
+type PermissionKey struct {
+	GlobalAppID
+	Key string
+}
+
 type PermissionStatement struct {
 	Effect     PermissionEffect
-	Permission Permission
+	Permission PermissionKey
 	Resource   string // path or resource indicator defined by the app
 }
 
