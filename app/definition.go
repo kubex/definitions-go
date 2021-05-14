@@ -1,6 +1,8 @@
 package app
 
 import (
+	"encoding/json"
+	"errors"
 	"github.com/kubex/definitions-go/translation"
 )
 
@@ -12,6 +14,14 @@ type Definition struct {
 	Dependencies []GlobalAppID // Other applications this app depends on
 	Permissions  []Permission  // Permissions made available by this application
 	Paths        []Path
+}
+
+func FromJson(jsonBytes []byte) (*Definition, error) {
+	def := &Definition{}
+	if err := json.Unmarshal(jsonBytes, def); err != nil {
+		return nil, errors.New("unable to decode app definition json")
+	}
+	return def, nil
 }
 
 type Path struct {
