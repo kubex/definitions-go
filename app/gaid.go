@@ -13,37 +13,39 @@ var (
 	ErrInvalidID = errors.New("the ID specified is invalid")
 )
 
-// GlobalAppID
 type GlobalAppID struct {
-	VendorID  string
-	AppID     string
-	remainder string
+	VendorID string
+	AppID    string
+	tertiary string // Left over data from the split
 }
 
 func (g *GlobalAppID) String() string {
 	return g.VendorID + "/" + g.AppID
 }
+func (g *GlobalAppID) Tertiary() string {
+	return g.tertiary
+}
 
-// New Create a Global App ID from your vendor and application IDs
+// NewID New Create a Global App ID from your vendor and application IDs
 func NewID(vendorID string, applicationID string) GlobalAppID {
 	resp := GlobalAppID{VendorID: vendorID, AppID: applicationID}
 	return resp
 }
 
-// FromString Take a string starting with a GlobalAppID, and extract the vendor, app and remainder
+// IDFromString FromString Take a string starting with a GlobalAppID, and extract the vendor, app and tertiary
 func IDFromString(input string) GlobalAppID {
 	glapid := GlobalAppID{}
 	parts := strings.SplitN(input, "/", 3)
 	if len(parts) > 1 {
 		glapid = NewID(parts[0], parts[1])
 		if len(parts) > 2 {
-			glapid.remainder = parts[2]
+			glapid.tertiary = parts[2]
 		}
 	}
 	return glapid
 }
 
-// Validate Validates a Global App ID
+// Validate Validates a Global App ID, strict mode will ensure tertiary data is empty
 func (g *GlobalAppID) Validate(strict bool) error {
 
 	if err := ValidateID(g.VendorID); err != nil {
@@ -53,7 +55,7 @@ func (g *GlobalAppID) Validate(strict bool) error {
 	if err := ValidateID(g.AppID); err != nil {
 		return errors.New("Invalid App ID " + g.AppID)
 	}
-	if strict && g.remainder != "" {
+	if strict && g.tertiary != "" {
 		return ErrInvalidGlobalAppID
 	}
 	return nil
