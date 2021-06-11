@@ -10,6 +10,7 @@ type Definition struct {
 	ID           GlobalAppID
 	Name         translation.Text
 	Description  translation.Text
+	Endpoint     string
 	UIMode       UIMode
 	Dependencies []GlobalAppID // Other applications this app depends on
 	Permissions  []Permission  // Permissions made available by this application
