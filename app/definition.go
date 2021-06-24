@@ -15,6 +15,7 @@ type Definition struct {
 	Dependencies         []GlobalAppID // Other applications this app depends on
 	Permissions          []Permission  // Permissions made available by this application
 	Paths                []Path
+	Icon                 string   // Default icon to use for this application
 	AuthenticationHeader []string // headers to send through - possibly template/replacement based
 }
 
