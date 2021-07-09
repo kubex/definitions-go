@@ -55,6 +55,7 @@ type Navigation struct {
 }
 
 type NavigationSection struct {
-	ID   string           `json:"id"`
-	Text translation.Text `json:"text"`
+	ID       string           `json:"id"`
+	Priority int32            `json:"priority"`
+	Text     translation.Text `json:"text"`
 }
