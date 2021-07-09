@@ -1,8 +1,8 @@
 package translation
 
 type Text struct {
-	Fallback     string
-	Translations map[string]string
+	Fallback     string            `json:"fallback"`
+	Translations map[string]string `json:"translations"`
 }
 
 func (t *Text) Get(language string) string {

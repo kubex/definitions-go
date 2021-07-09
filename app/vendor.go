@@ -7,9 +7,9 @@ import (
 )
 
 type Vendor struct {
-	ID          string
-	Name        translation.Text
-	Description translation.Text
+	ID          string           `json:"id"`
+	Name        translation.Text `json:"name"`
+	Description translation.Text `json:"description"`
 }
 
 func VendorFromJson(jsonBytes []byte) (*Vendor, error) {

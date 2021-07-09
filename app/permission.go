@@ -3,10 +3,10 @@ package app
 import "github.com/kubex/definitions-go/translation"
 
 type Permission struct {
-	App         GlobalAppID
-	Key         string
-	Name        translation.Text
-	Description translation.Text
+	App         GlobalAppID      `json:"app"`
+	Key         string           `json:"key"`
+	Name        translation.Text `json:"name"`
+	Description translation.Text `json:"description"`
 }
 
 type PermissionEffect string

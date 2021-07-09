@@ -14,8 +14,8 @@ var (
 )
 
 type GlobalAppID struct {
-	VendorID string
-	AppID    string
+	VendorID string `json:"vendorID"`
+	AppID    string `json:"appID"`
 	tertiary string // Left over data from the split
 }
 
