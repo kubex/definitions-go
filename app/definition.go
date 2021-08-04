@@ -47,6 +47,7 @@ type IntegrationPoint struct {
 }
 
 type Navigation struct {
+	Icon            string           `json:"icon"` // Material Design Icon Name
 	Text            translation.Text `json:"text"`
 	Title           translation.Text `json:"title"`
 	DestinationPath string           `json:"destinationPath"`
