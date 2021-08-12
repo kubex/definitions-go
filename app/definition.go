@@ -15,7 +15,8 @@ type Definition struct {
 	Dependencies []GlobalAppID    `json:"dependencies"` // Other applications this app depends on
 	Permissions  []Permission     `json:"permissions"`  // Permissions made available by this application
 	Paths        []Path           `json:"paths"`
-	Icon         string           `json:"icon"` // Default icon to use for this application
+	Icon         string           `json:"icon"`  // Default icon to use for this application
+	Unify        []Navigation     `json:"unify"` // How to link with other applications
 }
 
 func FromJson(jsonBytes []byte) (*Definition, error) {
@@ -41,9 +42,27 @@ type Path struct {
 	PageNavigation        []Navigation        `json:"pageNavigation"`
 }
 
+type IntegrationLocation string
+
+const (
+	IntegrationLocationPageNav IntegrationLocation = "nav.page"
+	IntegrationLocationAppNav  IntegrationLocation = "nav.app"
+	IntegrationLocationAction  IntegrationLocation = "action"
+)
+
+type LaunchMode string
+
+const (
+	LaunchModePage    LaunchMode = "page"    // (default) Render in the page
+	LaunchModeModal   LaunchMode = "modal"   // Launch in a modal
+	LaunchModeWindow  LaunchMode = "window"  // Launch in a new window
+	LaunchModeOverlay LaunchMode = "overlay" // Right side overlay app
+)
+
 type IntegrationPoint struct {
-	IntegrateApp GlobalAppID `json:"integrateApp"`
-	PathID       string      `json:"pathID"`
+	IntegrateApp GlobalAppID         `json:"integrateApp"`
+	Location     IntegrationLocation `json:"location"`
+	PathID       string              `json:"pathID"`
 }
 
 type Navigation struct {
@@ -52,6 +71,7 @@ type Navigation struct {
 	Title           translation.Text `json:"title"`
 	DestinationPath string           `json:"destinationPath"`
 	SectionID       string           `json:"sectionID"`
+	LaunchMode      LaunchMode       `json:"launchMode"`
 	Point           IntegrationPoint `json:"point"`
 }
 
