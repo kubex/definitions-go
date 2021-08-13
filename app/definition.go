@@ -48,6 +48,7 @@ const (
 	IntegrationLocationPageNav IntegrationLocation = "nav.page"
 	IntegrationLocationAppNav  IntegrationLocation = "nav.app"
 	IntegrationLocationAction  IntegrationLocation = "action"
+	IntegrationLocationPanel   IntegrationLocation = "panel"
 )
 
 type LaunchMode string
