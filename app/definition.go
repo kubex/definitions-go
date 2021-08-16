@@ -40,6 +40,7 @@ type Path struct {
 	AppNavigationSections []NavigationSection `json:"appNavigationSections"`
 	AppNavigation         []Navigation        `json:"appNavigation"`
 	PageNavigation        []Navigation        `json:"pageNavigation"`
+	PageActions           []Navigation        `json:"pageActions"`
 }
 
 type IntegrationLocation string
