@@ -46,7 +46,7 @@ func IDFromString(input string) GlobalAppID {
 }
 
 // Validate Validates a Global App ID, strict mode will ensure tertiary data is empty
-func (g *GlobalAppID) Validate(strict bool) error {
+func (g GlobalAppID) Validate(strict bool) error {
 
 	if err := ValidateID(g.VendorID); err != nil {
 		return errors.New("Invalid Vendor ID " + g.VendorID)
@@ -60,6 +60,10 @@ func (g *GlobalAppID) Validate(strict bool) error {
 	}
 	return nil
 
+}
+
+func (g GlobalAppID) Matches(against GlobalAppID, strict bool) bool {
+	return against.AppID == g.AppID && against.VendorID == g.VendorID && (!strict || g.tertiary == against.tertiary)
 }
 
 // CreateID converts a string to a valid ID
