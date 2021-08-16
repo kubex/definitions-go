@@ -19,31 +19,9 @@ type GlobalAppID struct {
 	tertiary string // Left over data from the split
 }
 
-func (g *GlobalAppID) String() string {
-	return g.VendorID + "/" + g.AppID
-}
-func (g *GlobalAppID) Tertiary() string {
-	return g.tertiary
-}
-
-// NewID New Create a Global App ID from your vendor and application IDs
-func NewID(vendorID string, applicationID string) GlobalAppID {
-	resp := GlobalAppID{VendorID: vendorID, AppID: applicationID}
-	return resp
-}
-
-// IDFromString FromString Take a string starting with a GlobalAppID, and extract the vendor, app and tertiary
-func IDFromString(input string) GlobalAppID {
-	glapid := GlobalAppID{}
-	parts := strings.SplitN(input, "/", 3)
-	if len(parts) > 1 {
-		glapid = NewID(parts[0], parts[1])
-		if len(parts) > 2 {
-			glapid.tertiary = parts[2]
-		}
-	}
-	return glapid
-}
+func (g GlobalAppID) String() string            { return g.VendorID + "/" + g.AppID }
+func (g GlobalAppID) Tertiary() string          { return g.tertiary }
+func (g *GlobalAppID) SetTertiary(value string) { g.tertiary = value }
 
 // Validate Validates a Global App ID, strict mode will ensure tertiary data is empty
 func (g GlobalAppID) Validate(strict bool) error {
@@ -64,6 +42,25 @@ func (g GlobalAppID) Validate(strict bool) error {
 
 func (g GlobalAppID) Matches(against GlobalAppID, strict bool) bool {
 	return against.AppID == g.AppID && against.VendorID == g.VendorID && (!strict || g.tertiary == against.tertiary)
+}
+
+// NewID New Create a Global App ID from your vendor and application IDs
+func NewID(vendorID string, applicationID string) GlobalAppID {
+	resp := GlobalAppID{VendorID: vendorID, AppID: applicationID}
+	return resp
+}
+
+// IDFromString FromString Take a string starting with a GlobalAppID, and extract the vendor, app and tertiary
+func IDFromString(input string) GlobalAppID {
+	glapid := GlobalAppID{}
+	parts := strings.SplitN(input, "/", 3)
+	if len(parts) > 1 {
+		glapid = NewID(parts[0], parts[1])
+		if len(parts) > 2 {
+			glapid.tertiary = parts[2]
+		}
+	}
+	return glapid
 }
 
 // CreateID converts a string to a valid ID
