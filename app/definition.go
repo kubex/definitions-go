@@ -12,10 +12,11 @@ type Definition struct {
 	Description  translation.Text `json:"description"`
 	Endpoint     string           `json:"endpoint"`
 	UIMode       UIMode           `json:"UIMode"`
+	Category     Category         `json:"category"`
+	Icon         string           `json:"icon"`         // Default icon to use for this application
 	Dependencies []GlobalAppID    `json:"dependencies"` // Other applications this app depends on
 	Permissions  []Permission     `json:"permissions"`  // Permissions made available by this application
 	Paths        []Path           `json:"paths"`
-	Icon         string           `json:"icon"`  // Default icon to use for this application
 	Unify        []Navigation     `json:"unify"` // How to link with other applications
 }
 

@@ -1,0 +1,38 @@
+package app
+
+type Category string
+
+const (
+	CategoryBooks            Category = "books"
+	CategoryMedical          Category = "medical"
+	CategoryDeveloperTools   Category = "developer-tools"
+	CategoryFinance          Category = "finance"
+	CategoryEducation        Category = "education"
+	CategoryNews             Category = "news"
+	CategoryEntertainment    Category = "entertainment"
+	CategoryProductivity     Category = "productivity"
+	CategoryReference        Category = "reference"
+	CategoryGames            Category = "games"
+	CategorySocialNetworking Category = "social-networking"
+	CategoryLifestyle        Category = "lifestyle"
+	CategoryUtilities        Category = "utilities"
+	CategoryOther            Category = "other"
+	CategoryAccountingTax    Category = "accounting-and-tax"
+	CategorySales            Category = "sales"
+	CategoryCustomerService  Category = "customer-service"
+	CategorySupply           Category = "supply"
+	CategoryHealthWellness   Category = "health-and-wellness"
+	CategoryInsurance        Category = "insurance"
+	CategoryWebServices      Category = "web-services"
+	CategoryLegal            Category = "legal"
+	CategoryTravel           Category = "travel"
+	CategoryMarketing        Category = "marketing"
+	CategoryTransport        Category = "transport"
+	CategoryEvents           Category = "events"
+	CategoryProduction       Category = "production"
+	CategoryPurchasing       Category = "purchasing"
+	CategoryHumanResources   Category = "human-resources"
+	CategoryOperations       Category = "operations"
+	CategoryRecruitment      Category = "recruitment"
+	CategoryAffiliates       Category = "affiliates"
+)
