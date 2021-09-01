@@ -76,7 +76,7 @@ func Verify(headers map[string]string, signatureKey string, maxTimeDiff int64) e
 		signature := sha256.New()
 		signature.Write([]byte(verifyString))
 
-		if sig == hex.EncodeToString(signature.Sum(nil)) {
+		if splits[0] == hex.EncodeToString(signature.Sum(nil)) {
 			return nil
 		}
 		return errors.New("unable to verify signature")
