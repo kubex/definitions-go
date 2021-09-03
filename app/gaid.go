@@ -20,10 +20,11 @@ type GlobalAppID struct {
 }
 
 func (g GlobalAppID) String() string            { return g.VendorID + "/" + g.AppID }
-func (g GlobalAppID) Tertiary() string          { return g.tertiary }
 func (g *GlobalAppID) SetTertiary(value string) { g.tertiary = value }
+func (g GlobalAppID) Tertiary() string          { return g.tertiary }
+func (g GlobalAppID) AsPath() string            { return g.String() + "/" + g.tertiary }
 
-// Validate Validates a Global App ID, strict mode will ensure tertiary data is empty
+// Validate a Global App ID, strict mode will ensure tertiary data is empty
 func (g GlobalAppID) Validate(strict bool) error {
 
 	if err := ValidateID(g.VendorID); err != nil {
