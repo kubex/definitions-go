@@ -20,6 +20,13 @@ type PermissionKey struct {
 	Key string
 }
 
+func NewPermissionKey(key string, gaid *GlobalAppID) PermissionKey {
+	if gaid == nil {
+		return PermissionKey{Key: key}
+	}
+	return PermissionKey{Key: key, GlobalAppID: *gaid}
+}
+
 type PermissionStatement struct {
 	Effect     PermissionEffect `json:"e"`
 	Permission PermissionKey    `json:"k"`
