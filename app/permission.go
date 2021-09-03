@@ -28,9 +28,9 @@ func NewPermissionKey(key string, gaid *GlobalAppID) PermissionKey {
 }
 
 type PermissionStatement struct {
-	Effect     PermissionEffect `json:"e"`
-	Permission PermissionKey    `json:"k"`
-	Resource   string           `json:"r"` // path or resource indicator defined by the app
+	Effect     PermissionEffect `json:"effect"`
+	Permission PermissionKey    `json:"permission"`
+	Resource   string           `json:"resource"` // path or resource indicator defined by the app
 }
 
 type PermissionPolicy struct {
