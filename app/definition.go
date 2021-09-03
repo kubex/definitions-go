@@ -9,15 +9,15 @@ import (
 type Definition struct {
 	ID           GlobalAppID      `json:"id"`
 	Name         translation.Text `json:"name"`
-	Description  translation.Text `json:"description"`
-	Endpoint     string           `json:"endpoint"`
-	UIMode       UIMode           `json:"UIMode"`
-	Category     Category         `json:"category"`
-	Icon         string           `json:"icon"`         // Default icon to use for this application
-	Dependencies []GlobalAppID    `json:"dependencies"` // Other applications this app depends on
-	Permissions  []Permission     `json:"permissions"`  // Permissions made available by this application
-	Paths        []Path           `json:"paths"`
-	Unify        []Navigation     `json:"unify"` // How to link with other applications
+	Description  translation.Text `json:"description,omitempty"`
+	Endpoint     string           `json:"endpoint,omitempty"`
+	UIMode       UIMode           `json:"UIMode,omitempty"`
+	Category     Category         `json:"category,omitempty"`
+	Icon         string           `json:"icon,omitempty"`         // Default icon to use for this application
+	Dependencies []GlobalAppID    `json:"dependencies,omitempty"` // Other applications this app depends on
+	Permissions  []Permission     `json:"permissions,omitempty"`  // Permissions made available by this application
+	Paths        []Path           `json:"paths,omitempty"`
+	Unify        []Navigation     `json:"unify,omitempty"` // How to link with other applications
 }
 
 func FromJson(jsonBytes []byte) (*Definition, error) {
@@ -30,18 +30,18 @@ func FromJson(jsonBytes []byte) (*Definition, error) {
 
 type Path struct {
 	ID          string           `json:"id"` // Allow the path to be linked
-	Name        translation.Text `json:"name"`
-	Description translation.Text `json:"description"`
+	Name        translation.Text `json:"name,omitempty"`
+	Description translation.Text `json:"description,omitempty"`
 
 	Path                string       `json:"path"`
-	Method              string       `json:"method"`
-	RequestPermissions  []Permission `json:"requestPermissions"`  // Permissions that should be sent to this path
-	RequiredPermissions []Permission `json:"requiredPermissions"` // Permissions that must be set for the user to call this page
+	Method              string       `json:"method,omitempty"`
+	RequestPermissions  []Permission `json:"requestPermissions,omitempty"`  // Permissions that should be sent to this path
+	RequiredPermissions []Permission `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to call this page
 
-	AppNavigationSections []NavigationSection `json:"appNavigationSections"`
-	AppNavigation         []Navigation        `json:"appNavigation"`
-	PageNavigation        []Navigation        `json:"pageNavigation"`
-	PageActions           []Navigation        `json:"pageActions"`
+	AppNavigationSections []NavigationSection `json:"appNavigationSections,omitempty"`
+	AppNavigation         []Navigation        `json:"appNavigation,omitempty"`
+	PageNavigation        []Navigation        `json:"pageNavigation,omitempty"`
+	PageActions           []Navigation        `json:"pageActions,omitempty"`
 }
 
 type IntegrationLocation string
@@ -64,23 +64,23 @@ const (
 )
 
 type IntegrationPoint struct {
-	IntegrateApp GlobalAppID         `json:"integrateApp"`
-	Location     IntegrationLocation `json:"location"`
-	PathID       string              `json:"pathID"`
+	IntegrateApp GlobalAppID         `json:"integrateApp,omitempty"`
+	Location     IntegrationLocation `json:"location,omitempty"`
+	PathID       string              `json:"pathID,omitempty"`
 }
 
 type Navigation struct {
-	Icon            string           `json:"icon"` // Material Design Icon Name
-	Text            translation.Text `json:"text"`
-	Title           translation.Text `json:"title"`
-	DestinationPath string           `json:"destinationPath"`
-	SectionID       string           `json:"sectionID"`
-	LaunchMode      LaunchMode       `json:"launchMode"`
-	Point           IntegrationPoint `json:"point"`
+	Icon            string           `json:"icon,omitempty"` // Material Design Icon Name
+	Text            translation.Text `json:"text,omitempty"`
+	Title           translation.Text `json:"title,omitempty"`
+	DestinationPath string           `json:"destinationPath,omitempty"`
+	SectionID       string           `json:"sectionID,omitempty"`
+	LaunchMode      LaunchMode       `json:"launchMode,omitempty"`
+	Point           IntegrationPoint `json:"point,omitempty"`
 }
 
 type NavigationSection struct {
 	ID       string           `json:"id"`
-	Priority int32            `json:"priority"`
-	Text     translation.Text `json:"text"`
+	Priority int32            `json:"priority,omitempty"`
+	Text     translation.Text `json:"text,omitempty"`
 }

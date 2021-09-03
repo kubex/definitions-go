@@ -3,10 +3,9 @@ package app
 import "github.com/kubex/definitions-go/translation"
 
 type Permission struct {
-	App         GlobalAppID      `json:"app"`
-	Key         string           `json:"key"`
+	Key         PermissionKey    `json:"key"`
 	Name        translation.Text `json:"name"`
-	Description translation.Text `json:"description"`
+	Description translation.Text `json:"description,omitempty"`
 }
 
 type PermissionEffect string
@@ -22,9 +21,9 @@ type PermissionKey struct {
 }
 
 type PermissionStatement struct {
-	Effect     PermissionEffect
-	Permission PermissionKey
-	Resource   string // path or resource indicator defined by the app
+	Effect     PermissionEffect `json:"e"`
+	Permission PermissionKey    `json:"k"`
+	Resource   string           `json:"r"` // path or resource indicator defined by the app
 }
 
 type PermissionPolicy struct {
