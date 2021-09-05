@@ -1,7 +1,6 @@
 package app
 
 type Event struct {
-	App        GlobalAppID
-	Key        string
+	Key        ScopedKey
 	Attributes []Attribute
 }

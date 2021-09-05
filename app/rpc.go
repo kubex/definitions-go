@@ -1,8 +1,7 @@
 package app
 
 type Rpc struct {
-	App          GlobalAppID
-	Key          string
+	Key          ScopedKey
 	Inputs       []Attribute
 	ResponseCode int32
 	Outputs      []Attribute

@@ -80,3 +80,15 @@ func ValidateID(input string) error {
 	}
 	return nil
 }
+
+type ScopedKey struct {
+	GlobalAppID
+	Key string
+}
+
+func NewScopedKey(key string, gaid *GlobalAppID) ScopedKey {
+	if gaid == nil {
+		return ScopedKey{Key: key}
+	}
+	return ScopedKey{Key: key, GlobalAppID: *gaid}
+}
