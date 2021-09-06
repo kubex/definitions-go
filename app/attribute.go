@@ -1,24 +1,47 @@
 package app
 
+import "github.com/kubex/definitions-go/translation"
+
 type AttributeType string
 
 const (
-	AttributeTypeText   AttributeType = "text"
-	AttributeTypeBool   AttributeType = "bool"
-	AttributeTypeNumber AttributeType = "number"
+	// Base types
+
+	AttributeTypeString AttributeType = "string" // string
+	AttributeTypeBool   AttributeType = "bool"   // bool
+	AttributeTypeInt    AttributeType = "int"    // int
+	AttributeTypeFloat  AttributeType = "float"  // float
+
+	// Additional formatting & indexing types
+
+	AttributeTypeID        AttributeType = "id"        // string
+	AttributeTypeTimestamp AttributeType = "timestamp" // unix timestamp int
+	AttributeTypeLink      AttributeType = "link"      // string
 )
 
 type Attribute struct {
 	// Key unique key for this attribute
 	Key string
+	// Name Label for this attribute within the UI
+	Name translation.Text
+	// Description
+	Description translation.Text
+	// Help Text do display to assist the user with data input
+	Help translation.Text
 	// Type the type of value stored
 	Type AttributeType
 	// Required Value of this attribute is required to be set
 	Required bool
+	// Nullable allow null to be set/returned for this attribute
+	Nullable bool
+	// Index should indicate if the attribute can be searched
+	Index bool
 	// AnonymousData Attribute value can be guaranteed as anonymous
 	AnonymousData bool
-	// PersonalData Attribute contains personal data
+	// PersonalData Attribute contains personal data, encrypted on write, destroyed on a data delete request
 	PersonalData bool
+	// SecureData will be encrypted like personal data, but will not be removed on a data delete request
+	SecureData bool
 	// Annotations provide additional context
 	Annotations map[string]string
 	// AvailableValues provides a list of the possible options (if set, value must match)
