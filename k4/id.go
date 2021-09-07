@@ -25,7 +25,7 @@ var minVerifyLen int
 var hostId string
 
 func init() {
-	hostId = randomString(3)
+	hostId = RandomString(3)
 	minVerifyLen = p1Len + p2Len + p3Len + p4Len + (len(spacer) * 4)
 }
 
@@ -83,7 +83,7 @@ func NewID(prefix string) ID {
 	}
 	i.Prefix = strings.ToLower(prefix)
 	i.UniqueKey = strings.ToLower(base36Time())
-	i.Verification = strings.ToLower(randomString(verifyLength))
+	i.Verification = strings.ToLower(RandomString(verifyLength))
 	i.Verification = i.Verification + strings.ToLower(checkSum(i.Verification+i.UniqueKey))
 	return i
 }
@@ -94,7 +94,7 @@ func checkSum(input string) string {
 	return fmt.Sprintf("%x", hasher.Sum(nil))[:checksumSize]
 }
 
-func randomString(n int) string {
+func RandomString(n int) string {
 	b := make([]byte, n+3)
 	_, err := rand.Read(b)
 
@@ -119,9 +119,9 @@ func base36Time() string {
 	}
 
 	return fixLen(strconv.FormatInt(now.Unix(), 36)+hostId, p1Len) + spacer +
-		randomString(p2Len) + spacer +
+		RandomString(p2Len) + spacer +
 		fixLen(timeKey, p3Len) + spacer +
-		randomString(p4Len)
+		RandomString(p4Len)
 }
 
 func fixLen(input string, reqLen int) string {
