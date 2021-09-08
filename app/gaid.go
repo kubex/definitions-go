@@ -21,8 +21,14 @@ type GlobalAppID struct {
 
 func (g GlobalAppID) String() string            { return g.VendorID + "/" + g.AppID }
 func (g *GlobalAppID) SetTertiary(value string) { g.tertiary = value }
-func (g GlobalAppID) Tertiary() string          { return g.tertiary }
-func (g GlobalAppID) AsPath() string            { return g.String() + "/" + g.tertiary }
+func (g *GlobalAppID) ClearTertiary() string {
+	value := g.tertiary
+	g.tertiary = ""
+	return value
+}
+
+func (g GlobalAppID) Tertiary() string { return g.tertiary }
+func (g GlobalAppID) AsPath() string   { return g.String() + "/" + g.tertiary }
 
 // Validate a Global App ID, strict mode will ensure tertiary data is empty
 func (g GlobalAppID) Validate(strict bool) error {
@@ -84,6 +90,13 @@ func ValidateID(input string) error {
 type ScopedKey struct {
 	GlobalAppID
 	Key string
+}
+
+func (k ScopedKey) String() string { return k.VendorID + "/" + k.AppID + "/" + k.Key }
+
+func ScopedKeyFromString(input string) ScopedKey {
+	i := IDFromString(input)
+	return ScopedKey{Key: i.ClearTertiary(), GlobalAppID: i}
 }
 
 func NewScopedKey(key string, gaid *GlobalAppID) ScopedKey {
