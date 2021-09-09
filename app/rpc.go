@@ -1,7 +1,7 @@
 package app
 
 type Rpc struct {
-	Key          ScopedKey
+	Key          string
 	Inputs       []Attribute
 	ResponseCode int32
 	Outputs      []Attribute

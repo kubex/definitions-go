@@ -30,6 +30,8 @@ type Attribute struct {
 	Help translation.Text
 	// Type the type of value stored
 	Type AttributeType
+	// Hidden Value of this attribute will not be visible within the UI
+	Hidden bool
 	// Required Value of this attribute is required to be set
 	Required bool
 	// Nullable allow null to be set/returned for this attribute
@@ -48,4 +50,6 @@ type Attribute struct {
 	AvailableValues map[string]string
 	// RegexMatch attribute is validated against this regex
 	RegexMatch string
+	// Priority allows you to specify the order of the attributes when in a slice
+	Priority int
 }

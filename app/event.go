@@ -1,6 +1,6 @@
 package app
 
 type Event struct {
-	Key        ScopedKey
+	Key        string
 	Attributes []Attribute
 }
