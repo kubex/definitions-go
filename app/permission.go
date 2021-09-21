@@ -25,7 +25,7 @@ type PermissionPolicy struct {
 const PermissionResourceAll = "*"
 
 type PermissionStatement struct {
-	Effect     PermissionEffect `json:"effect"`
-	Permission ScopedKey        `json:"permission"`
-	Resource   string           `json:"resource"` // path or resource indicator defined by the app
+	Effect     PermissionEffect `json:"e"`
+	Permission ScopedKey        `json:"p"`
+	Resource   string           `json:"r"` // path or resource indicator defined by the app
 }
