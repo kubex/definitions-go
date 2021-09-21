@@ -1,11 +1,14 @@
 package transport
 
 import (
+	"bufio"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"github.com/kubex/definitions-go/app"
+	"io"
+	"net/textproto"
 	"strconv"
 	"strings"
 	"time"
@@ -28,9 +31,18 @@ func NewContext(headers map[string][]string) *RequestContext {
 	return c
 }
 
+func NewContextFromRaw(rawHeaders io.Reader) (*RequestContext, error) {
+	reader := textproto.NewReader(bufio.NewReader(rawHeaders))
+	headers, err := reader.ReadMIMEHeader()
+	if headers != nil && io.EOF != err && err != nil {
+		return nil, err
+	}
+	return NewContext(headers), nil
+}
+
 func (r *RequestContext) ApplyHeaders(headers map[string][]string) {
 	for k, vs := range headers {
-		switch k {
+		switch strings.ToLower(k) {
 		case RequestWorkspaceID:
 			r.WorkspaceID = vs[0]
 		case RequestUserID:
