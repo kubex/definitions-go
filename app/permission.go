@@ -22,6 +22,8 @@ type PermissionPolicy struct {
 	Statements  []PermissionStatement
 }
 
+const PermissionResourceAll = "*"
+
 type PermissionStatement struct {
 	Effect     PermissionEffect `json:"effect"`
 	Permission ScopedKey        `json:"permission"`
