@@ -4,6 +4,7 @@ type UIMode string
 
 const (
 	UIModeFull        UIMode = "full"        // Standard application
+	UIModeBasic       UIMode = "basic"       // simple application - used for non-native applications
 	UIModeIntegration UIMode = "integration" // Integrated into existing pages
 	UIModeNone        UIMode = "none"        // No UI - flow only
 )
