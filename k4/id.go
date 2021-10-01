@@ -16,17 +16,17 @@ const checksumSize = 4
 const verifyLength = 10
 
 // Support dash removal if required
-const p1Len = 9
+const p1Len = 6
 const p2Len = 5
-const p3Len = 6
-const p4Len = 5
+const p3Len = 5
+const p4Len = 9
 
 var minVerifyLen int
 var hostId string
 
 func init() {
 	hostId = RandomString(3)
-	minVerifyLen = p1Len + p2Len + p3Len + p4Len + (len(spacer) * 4)
+	minVerifyLen = p4Len + p2Len + p1Len + p3Len + (len(spacer) * 4)
 }
 
 type ID struct {
@@ -118,10 +118,10 @@ func base36Time() string {
 		timeKey += string(intString[x-1])
 	}
 
-	return fixLen(strconv.FormatInt(now.Unix(), 36)+hostId, p1Len) + spacer +
+	return fixLen(timeKey, p1Len) + spacer +
 		RandomString(p2Len) + spacer +
-		fixLen(timeKey, p3Len) + spacer +
-		RandomString(p4Len)
+		RandomString(p3Len) + spacer +
+		fixLen(hostId+strconv.FormatInt(now.Unix(), 36), p4Len)
 }
 
 func fixLen(input string, reqLen int) string {
