@@ -3,15 +3,16 @@ package transport
 import (
 	"bufio"
 	"crypto/sha256"
-	"encoding/hex"
 	"encoding/json"
 	"errors"
-	"github.com/kubex/definitions-go/app"
+	"fmt"
 	"io"
 	"net/textproto"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/kubex/definitions-go/app"
 )
 
 type RequestContext struct {
@@ -64,35 +65,34 @@ func (r *RequestContext) ApplyHeaders(headers map[string][]string) {
 }
 
 func (r RequestContext) Verify(signatureKey string, maxTimeDiff int64) error {
-	if r.signature != "" && strings.Contains(r.signature, "/") {
-		splits := strings.SplitN(r.signature, "/", 2)
-		timestamp, _ := strconv.ParseInt(splits[1], 10, 64)
-
-		now := time.Now().Unix()
-		if timestamp > (now+maxTimeDiff) || timestamp < (now-maxTimeDiff) {
-			return errors.New("signature outside of available time window")
-		}
-
-		verifyString := ""
-		verifyString += r.WorkspaceID
-		verifyString += r.UserID
-		verifyString += signatureKey
-		verifyString += r.TraceID
-		verifyString += r.UserIP
-		verifyString += r.UserAgent
-
-		verifyString += splits[1]
-
-		signature := sha256.New()
-		signature.Write([]byte(verifyString))
-
-		if splits[0] == hex.EncodeToString(signature.Sum(nil)) {
-			return nil
-		}
-		return errors.New("unable to verify signature")
-
+	if r.signature == "" || !strings.Contains(r.signature, "/") {
+		return errors.New("invalid or missing signature")
 	}
-	return errors.New("invalid or missing signature")
+	splits := strings.SplitN(r.signature, "/", 2)
+
+	timestamp, _ := strconv.ParseInt(splits[1], 10, 64)
+
+	now := time.Now().Unix()
+	if timestamp > (now+maxTimeDiff) || timestamp < (now-maxTimeDiff) {
+		return errors.New("signature outside of available time window")
+	}
+
+	verifyString := ""
+	verifyString += r.WorkspaceID
+	verifyString += r.UserID
+	verifyString += signatureKey
+	verifyString += r.TraceID
+	verifyString += r.UserIP
+	verifyString += r.UserAgent
+	verifyString += splits[1]
+
+	signature := sha256.Sum256([]byte(verifyString))
+
+	if splits[0] != fmt.Sprintf("%x", signature) {
+		return errors.New("unable to verify signature")
+	}
+
+	return nil
 }
 
 func (r RequestContext) HasPermission(perm app.ScopedKey) bool {

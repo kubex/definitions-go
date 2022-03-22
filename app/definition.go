@@ -3,6 +3,7 @@ package app
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/kubex/definitions-go/translation"
 )
 
@@ -24,7 +25,7 @@ type Definition struct {
 
 	Homepage       string `json:"homepage,omitempty"`       // https:// url
 	TermsOfService string `json:"termsOfService,omitempty"` // https:// url
-	PrivacyPolicy  string `json:"privacyPolicy,omitempty" //https:// url`
+	PrivacyPolicy  string `json:"privacyPolicy,omitempty"`  // https:// url
 
 	SupportEmail string `json:"supportEmail,omitempty"`
 }
