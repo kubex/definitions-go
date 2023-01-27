@@ -32,3 +32,18 @@ const ResponseDebug = "x-kubex-debug"
 
 // ResponseZeroPad When set to true, padding will be removed for the container
 const ResponseZeroPad = "x-kubex-zeropad"
+
+// ResponseAlert alert text
+const ResponseAlert = "x-kubex-alert"
+
+// ResponseAlertInfo alert text
+const ResponseAlertInfo = "x-kubex-alert-info"
+
+// ResponseAlertSuccess alert text
+const ResponseAlertSuccess = "x-kubex-alert-success"
+
+// ResponseAlertWarning alert text
+const ResponseAlertWarning = "x-kubex-alert-warning"
+
+// ResponseAlertDanger alert text
+const ResponseAlertDanger = "x-kubex-alert-danger"
