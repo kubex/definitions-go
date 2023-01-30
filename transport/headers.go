@@ -33,6 +33,9 @@ const ResponseDebug = "x-kubex-debug"
 // ResponseZeroPad When set to true, padding will be removed for the container
 const ResponseZeroPad = "x-kubex-zeropad"
 
+// ResponseMaxWidth Set to lpanel / mpanel to set the desired width of the container, only available in some contexts
+const ResponseMaxWidth = "x-kubex-maxwidth"
+
 // ResponseAlert alert text
 const ResponseAlert = "x-kubex-alert"
 
