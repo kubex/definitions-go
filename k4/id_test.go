@@ -14,8 +14,9 @@ func TestID(t *testing.T) {
 	for i := 0; i < routines; i++ {
 		go func() {
 			for i := 0; i < iter; i++ {
-				gen := NewID("SRC")
+				gen := NewID()
 				idStream <- gen
+				log.Println(gen.Full())
 			}
 		}()
 	}
@@ -24,10 +25,10 @@ func TestID(t *testing.T) {
 	lastProcess := 0
 	for processed := 0; processed < test; processed++ {
 		gen := <-idStream
-		if _, found := generated[gen.Compact()]; found {
+		if _, found := generated[gen.UID()]; found {
 			t.Fatal("Duplicate ID generated ", gen)
 		} else {
-			generated[gen.Compact()] = true
+			generated[gen.UID()] = true
 		}
 		lastProcess = processed
 		if !IDFromString(gen.Full()).HasValidVerification() {
