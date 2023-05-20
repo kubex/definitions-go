@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-const checksumSize = 2
-const defaultIDLength = 14
+const checksumSize = 1
+const defaultIDLength = 15
 const defaultTimeGenerator = TimeGeneratorMicro
 
 var globalIDHost IDGenerator
@@ -15,10 +15,20 @@ var globalIDHost IDGenerator
 type TimeGenerator int
 
 const (
+	//TimeGeneratorNano 11 Char string
 	TimeGeneratorNano TimeGenerator = iota
+	// TimeGeneratorMicro 9 Char string
 	TimeGeneratorMicro
+	// TimeGeneratorMilli 7-8 Char string
 	TimeGeneratorMilli
+	// TimeGeneratorSecond 6 Char string
 	TimeGeneratorSecond
+	// TimeGeneratorMinute 5 Char string
+	TimeGeneratorMinute
+	// TimeGeneratorHour 4 Char string
+	TimeGeneratorHour
+	// TimeGeneratorDay 3 Char string
+	TimeGeneratorDay
 )
 
 func (t TimeGenerator) timeID() string {
@@ -33,59 +43,69 @@ func (t TimeGenerator) timeID() string {
 		i.SetInt64(now.UnixMilli())
 	case TimeGeneratorSecond:
 		i.SetInt64(now.Unix())
+	case TimeGeneratorMinute:
+		i.SetInt64(now.Unix() / 60)
+	case TimeGeneratorHour:
+		i.SetInt64(now.Unix() / 3600)
+	case TimeGeneratorDay:
+		i.SetInt64(now.Unix() / 86400)
 	}
 	return i.Text(62)
 }
 
 func init() {
-	globalIDHost = IDGen()
+	globalIDHost = DefaultIDGenerator()
 }
 
 type IDGenerator struct {
-	HostID       string
+	hostID       string
 	hostIDLength int
 	idLength     int
 	timeSize     TimeGenerator
 	generation   chan bool
 }
 
-func IDGen() IDGenerator {
+func DefaultIDGenerator() IDGenerator {
 	h := IDGenerator{
 		idLength: defaultIDLength,
 		timeSize: defaultTimeGenerator,
 	}
-	h.genHostID()
+	h.randomHostID()
 	h.generation = make(chan bool, 1)
 	return h
 }
 
-func (h *IDGenerator) genHostID() {
-	h.HostID = RandomString(2)
-	h.hostIDLength = len(h.HostID)
+func (h *IDGenerator) SetHostID(id string) {
+	h.hostID = id
+	h.hostIDLength = len(h.hostID)
 }
 
+func (h *IDGenerator) GetHostID() string              { return h.hostID }
+func (h *IDGenerator) randomHostID()                  { h.SetHostID(RandomString(2)) }
 func (h *IDGenerator) SetBaseLength(size int)         { h.idLength = size }
 func (h *IDGenerator) SetTimeSize(size TimeGenerator) { h.timeSize = size }
 
 func (h *IDGenerator) New() ID {
-	if h.HostID == "" {
-		h.genHostID()
+	if h.hostID == "" {
+		h.randomHostID()
 	}
 
 	h.generation <- true
 	i := ID{}
 	i.uniqueKey = h.randomID()
 	i.verification = i.checkSum(i.uniqueKey)
-	time.Sleep(time.Nanosecond)
+	if h.timeSize == TimeGeneratorNano && h.idLength < 15 {
+		//Sleep for a nanosecond to ensure uniqueness when precision is needed
+		time.Sleep(time.Nanosecond)
+	}
 	<-h.generation
 	return i
 }
 
 func (h *IDGenerator) randomID() string {
-	//tId := h.reverse(h.timeSize.timeID())
-	tId := h.timeSize.timeID()
-	useLen := h.idLength - len(tId) - len(h.HostID)
-	return h.fixLen(tId+h.HostID+RandomString(useLen), h.idLength)
+	tId := h.reverse(h.timeSize.timeID())
+	useLen := h.idLength - len(tId) - len(h.hostID)
+	return h.fixLen(tId+h.hostID+RandomString(useLen), h.idLength)
 }
 
 func (h *IDGenerator) reverse(s string) string {

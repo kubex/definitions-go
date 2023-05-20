@@ -9,7 +9,6 @@ import (
 )
 
 func RandomString(n int) string {
-	//return "aaaaalikfewhflkwheklfhewlkfhewlkfhwelkhfklwehflkew"[:n]
 	if n < 1 {
 		return ""
 	}
@@ -39,8 +38,9 @@ func (i ID) String() string {
 	return strings.TrimSpace(i.verification + i.uniqueKey)
 }
 
-func (i ID) UID() string {
-	return i.uniqueKey
+func (i ID) UUID() string {
+	rawID := i.String() + "0000000000000000"
+	return fmt.Sprintf("%x-%x-%x-%x-%x", rawID[:4], rawID[4:6], rawID[6:8], rawID[8:10], rawID[10:16])
 }
 
 func (i ID) IsValid() bool {

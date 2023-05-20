@@ -16,56 +16,56 @@ func BenchmarkIDGeneration(b *testing.B) {
 }
 
 func BenchmarkIDGenerationNano(b *testing.B) {
-	idGen := IDGen()
-	idGen.SetBaseLength(16)
+	idGen := DefaultIDGenerator()
+	idGen.idLength = 16
 	idGen.SetTimeSize(TimeGeneratorNano)
 	benchmarkIDGeneration(idGen, b)
 }
 
 func BenchmarkIDGenerationMicro(b *testing.B) {
-	idGen := IDGen()
-	idGen.SetBaseLength(16)
+	idGen := DefaultIDGenerator()
 	idGen.SetTimeSize(TimeGeneratorMicro)
 	benchmarkIDGeneration(idGen, b)
 }
 func BenchmarkIDGenerationMilli(b *testing.B) {
-	idGen := IDGen()
-	idGen.SetBaseLength(16)
+	idGen := DefaultIDGenerator()
 	idGen.SetTimeSize(TimeGeneratorMilli)
 	benchmarkIDGeneration(idGen, b)
 }
 
 func BenchmarkIDGenerationSmall(b *testing.B) {
-	idGen := IDGen()
+	idGen := DefaultIDGenerator()
 	idGen.SetBaseLength(6)
 	idGen.SetTimeSize(TimeGeneratorSecond)
 	benchmarkIDGeneration(idGen, b)
 }
 
 func TestID(t *testing.T) {
-	routines := 200
-	iter := 1000
+	routines := 1000
+	iter := 10000
 	test := routines * iter
 	idStream := make(chan ID, test)
 
-	idGen := IDGen()
 	for i := 0; i < routines; i++ {
-		go func() {
+		go func(generator IDGenerator) {
 			for i := 0; i < iter; i++ {
-				gen := idGen.New()
+				gen := generator.New()
 				idStream <- gen
-				log.Println(gen.String())
+				//if i%500 == 0 {
+				//log.Println(gen.String())
+				//log.Println(gen.UUID())
+				//}
 			}
-		}()
+		}(DefaultIDGenerator())
 	}
 	generated := map[string]bool{}
 	lastProcess := 0
 	for processed := 0; processed < test; processed++ {
 		gen := <-idStream
-		if _, found := generated[gen.UID()]; found {
+		if _, found := generated[gen.String()]; found {
 			t.Fatal("Duplicate ID generated ", gen)
 		} else {
-			generated[gen.UID()] = true
+			generated[gen.String()] = true
 		}
 		lastProcess = processed
 		if !IDFromString(gen.String()).IsValid() {
