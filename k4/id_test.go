@@ -76,3 +76,17 @@ func TestID(t *testing.T) {
 	log.Println("Processed ", lastProcess+1, " IDs")
 
 }
+
+func TestIDUUID(t *testing.T) {
+	id := NewID()
+	originalUUID := id.UUID()
+	log.Println(originalUUID)
+	id2 := IDFromUUID(originalUUID)
+	log.Println(id2.UUID())
+	if id.String() != id2.String() {
+		log.Fatal("UUID conversion failed")
+	}
+	if id.IsValid() && !id2.IsValid() {
+		log.Fatal("UUID conversion failed checksum")
+	}
+}

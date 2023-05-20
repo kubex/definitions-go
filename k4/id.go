@@ -3,6 +3,7 @@ package k4
 import (
 	"crypto/sha1"
 	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"math/rand"
 	"strings"
@@ -27,6 +28,14 @@ func IDFromString(input string) ID {
 	i.verification = input[:checksumSize]
 	i.uniqueKey = input[checksumSize:]
 	return i
+}
+
+func IDFromUUID(input string) ID {
+	decode, err := hex.DecodeString(strings.ReplaceAll(input, "-", ""))
+	if err != nil {
+		return ID{}
+	}
+	return IDFromString(string(decode))
 }
 
 type ID struct {
