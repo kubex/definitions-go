@@ -31,24 +31,23 @@ const (
 	TimeGeneratorDay
 )
 
-func (t TimeGenerator) timeID() string {
+func (t TimeGenerator) Generate(src time.Time) string {
 	var i big.Int
-	now := time.Now()
 	switch t {
 	case TimeGeneratorNano:
-		i.SetInt64(now.UnixNano())
+		i.SetInt64(src.UnixNano())
 	case TimeGeneratorMicro:
-		i.SetInt64(now.UnixMicro())
+		i.SetInt64(src.UnixMicro())
 	case TimeGeneratorMilli:
-		i.SetInt64(now.UnixMilli())
+		i.SetInt64(src.UnixMilli())
 	case TimeGeneratorSecond:
-		i.SetInt64(now.Unix())
+		i.SetInt64(src.Unix())
 	case TimeGeneratorMinute:
-		i.SetInt64(now.Unix() / 60)
+		i.SetInt64(src.Unix() / 60)
 	case TimeGeneratorHour:
-		i.SetInt64(now.Unix() / 3600)
+		i.SetInt64(src.Unix() / 3600)
 	case TimeGeneratorDay:
-		i.SetInt64(now.Unix() / 86400)
+		i.SetInt64(src.Unix() / 86400)
 	}
 	return i.Text(62)
 }
@@ -103,7 +102,7 @@ func (h *IDGenerator) New() ID {
 }
 
 func (h *IDGenerator) randomID() string {
-	tId := h.reverse(h.timeSize.timeID())
+	tId := h.reverse(h.timeSize.Generate(time.Now()))
 	useLen := h.idLength - len(tId) - len(h.hostID)
 	return h.fixLen(tId+h.hostID+RandomString(useLen), h.idLength)
 }
