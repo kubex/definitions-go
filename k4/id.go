@@ -25,17 +25,17 @@ func NewID() ID { return globalIDHost.New() }
 
 func IDFromString(input string) ID {
 	i := ID{}
+	if len(input) < checksumSize {
+		return i
+	}
 	i.verification = input[:checksumSize]
 	i.uniqueKey = input[checksumSize:]
 	return i
 }
 
 func IDFromUUID(input string) ID {
-	decode, err := hex.DecodeString(strings.ReplaceAll(input, "-", ""))
-	if err != nil {
-		return ID{}
-	}
-	return IDFromString(string(decode))
+	rawID, _ := hex.DecodeString(strings.ReplaceAll(input, "-", ""))
+	return IDFromString(strings.ReplaceAll(encodeB63(rawID), "?", ""))
 }
 
 type ID struct {
@@ -48,8 +48,21 @@ func (i ID) String() string {
 }
 
 func (i ID) UUID() string {
-	rawID := i.String() + "0000000000000000"
-	return fmt.Sprintf("%x-%x-%x-%x-%x", rawID[:4], rawID[4:6], rawID[6:8], rawID[8:10], rawID[10:16])
+	if len(i.String()) > 21 {
+		// IDs generated that are over 21 characters long, have the potential to be invalid uuids
+		return ""
+	}
+
+	var rawID []byte
+	var uuid string
+	for xi := 20; xi < 24; xi++ {
+		if len(uuid) < 32 {
+			rawID, _ = decodeB63((i.String() + "??????????????????????")[:xi])
+			uuid = hex.EncodeToString(rawID)
+		}
+	}
+
+	return fmt.Sprintf("%s-%s-%s-%s-%s", uuid[:8], uuid[8:12], uuid[12:16], uuid[16:20], uuid[20:32])
 }
 
 func (i ID) IsValid() bool {

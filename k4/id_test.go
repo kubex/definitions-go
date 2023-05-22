@@ -41,7 +41,7 @@ func BenchmarkIDGenerationSmall(b *testing.B) {
 }
 
 func TestID(t *testing.T) {
-	routines := 1000
+	routines := 10
 	iter := 10000
 	test := routines * iter
 	idStream := make(chan ID, test)
@@ -51,10 +51,10 @@ func TestID(t *testing.T) {
 			for i := 0; i < iter; i++ {
 				gen := generator.New()
 				idStream <- gen
-				//if i%500 == 0 {
-				//log.Println(gen.String())
-				//log.Println(gen.UUID())
-				//}
+				if i%500 == 0 {
+					log.Println(gen.String())
+					//	log.Println(gen.UUID())
+				}
 			}
 		}(DefaultIDGenerator())
 	}
@@ -71,6 +71,9 @@ func TestID(t *testing.T) {
 		if !IDFromString(gen.String()).IsValid() {
 			t.Fatal("Invalid verification")
 		}
+		if IDFromUUID(gen.UUID()).UUID() != gen.UUID() {
+			t.Fatal("Invalid uuid: ", gen.UUID(), " - ", gen.String())
+		}
 	}
 
 	log.Println("Processed ", lastProcess+1, " IDs")
@@ -78,15 +81,25 @@ func TestID(t *testing.T) {
 }
 
 func TestIDUUID(t *testing.T) {
-	id := NewID()
-	originalUUID := id.UUID()
-	log.Println(originalUUID)
-	id2 := IDFromUUID(originalUUID)
-	log.Println(id2.UUID())
-	if id.String() != id2.String() {
-		log.Fatal("UUID conversion failed")
+	h := DefaultIDGenerator()
+	h.SetBaseLength(19)
+
+	for i := 0; i < 10000; i++ {
+		id := h.New()
+		originalUUID := id.UUID()
+		id2 := IDFromUUID(originalUUID)
+		log.Println(id.UUID(), " : ", id2.UUID())
+		log.Println(id.String(), " : ", id2.String())
+		if id.String() != id2.String() {
+			log.Fatal("UUID conversion failed")
+		}
+		if id.IsValid() && !id2.IsValid() {
+			log.Fatal("UUID conversion failed checksum")
+		}
 	}
-	if id.IsValid() && !id2.IsValid() {
-		log.Fatal("UUID conversion failed checksum")
-	}
+}
+
+func TestUUIDImport(t *testing.T) {
+	uuid := "690482d9-1dda-42b8-b6e1-8df9d16baf05"
+	log.Println(IDFromUUID(uuid).String())
 }
