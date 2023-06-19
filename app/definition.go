@@ -31,8 +31,8 @@ type Definition struct {
 	SupportEmail string `json:"supportEmail,omitempty"`
 }
 
-func (d *Definition) WithPath(path Path) *Definition {
-	d.Paths = append(d.Paths, path)
+func (d *Definition) WithPath(path ...Path) *Definition {
+	d.Paths = append(d.Paths, path...)
 	return d
 }
 
