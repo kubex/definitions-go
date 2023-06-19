@@ -31,6 +31,11 @@ type Definition struct {
 	SupportEmail string `json:"supportEmail,omitempty"`
 }
 
+func (d *Definition) WithPath(path Path) *Definition {
+	d.Paths = append(d.Paths, path)
+	return d
+}
+
 func FromJson(jsonBytes []byte) (*Definition, error) {
 	def := &Definition{}
 	if err := json.Unmarshal(jsonBytes, def); err != nil {
