@@ -36,8 +36,24 @@ type Navigation struct {
 	LaunchMode      LaunchMode       `json:"launchMode,omitempty"`
 }
 
-type NavigationSection struct {
-	ID       string           `json:"id"`
-	Priority int32            `json:"priority,omitempty"`
-	Text     translation.Text `json:"text,omitempty"`
+func NewNavigation(destination string, text translation.Text) *Navigation {
+	return &Navigation{
+		Text:            text,
+		DestinationPath: destination,
+	}
+}
+
+func (n *Navigation) WithLaunchMode(launchMode LaunchMode) *Navigation {
+	n.LaunchMode = launchMode
+	return n
+}
+
+func (n *Navigation) WithIcon(icon string) *Navigation {
+	n.Icon = icon
+	return n
+}
+
+func (n *Navigation) WithTitle(title translation.Text) *Navigation {
+	n.Title = title
+	return n
 }
