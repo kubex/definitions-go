@@ -62,6 +62,7 @@ type IDGenerator struct {
 	idLength     int
 	timeSize     TimeGenerator
 	generation   chan bool
+	withTime     *time.Time
 }
 
 func DefaultIDGenerator() IDGenerator {
@@ -83,6 +84,7 @@ func (h *IDGenerator) GetHostID() string              { return h.hostID }
 func (h *IDGenerator) randomHostID()                  { h.SetHostID(RandomString(2)) }
 func (h *IDGenerator) SetBaseLength(size int)         { h.idLength = size }
 func (h *IDGenerator) SetTimeSize(size TimeGenerator) { h.timeSize = size }
+func (h *IDGenerator) SetTime(when time.Time)         { h.withTime = &when }
 
 func (h *IDGenerator) New() ID {
 	if h.hostID == "" {
@@ -101,8 +103,15 @@ func (h *IDGenerator) New() ID {
 	return i
 }
 
+func (h *IDGenerator) time() time.Time {
+	if h.withTime == nil {
+		return time.Now()
+	}
+	return *h.withTime
+}
+
 func (h *IDGenerator) randomID() string {
-	tId := h.reverse(h.timeSize.Generate(time.Now()))
+	tId := h.reverse(h.timeSize.Generate(h.time()))
 	useLen := h.idLength - len(tId) - len(h.hostID)
 	return h.fixLen(tId+h.hostID+RandomString(useLen), h.idLength)
 }
