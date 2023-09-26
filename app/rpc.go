@@ -2,7 +2,7 @@ package app
 
 type Rpc struct {
 	Key          string
-	Inputs       []Attribute
+	Inputs       []Property
 	ResponseCode int32
-	Outputs      []Attribute
+	Outputs      []Property
 }

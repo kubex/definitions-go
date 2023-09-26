@@ -14,11 +14,10 @@ const (
 type LaunchMode string
 
 const (
-	LaunchModePage  LaunchMode = "page"  // (default) Render in the page
-	LaunchModeModal LaunchMode = "modal" // Launch in a modal
-	//LaunchModeLightbox LaunchMode = "lightbox" // Launch in a modal
-	LaunchModeWindow  LaunchMode = "window"  // Launch in a new window
-	LaunchModeOverlay LaunchMode = "overlay" // Right side overlay app
+	LaunchModePage   LaunchMode = "page"   // (default) Render in the page
+	LaunchModeModal  LaunchMode = "modal"  // Launch in a modal
+	LaunchModeWindow LaunchMode = "window" // Launch in a new window
+	LaunchModeSlide  LaunchMode = "slide"  // Right side overlay app
 )
 
 type IntegrationPoint struct {

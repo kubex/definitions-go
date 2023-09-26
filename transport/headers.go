@@ -30,12 +30,6 @@ const ResponseUri = "x-kubex-uri"
 // ResponseDebug Debug object for the browser
 const ResponseDebug = "x-kubex-debug"
 
-// ResponseZeroPad When set to true, padding will be removed for the container
-const ResponseZeroPad = "x-kubex-zeropad"
-
-// ResponseMaxWidth Set to lpanel / mpanel to set the desired width of the container, only available in some contexts
-const ResponseMaxWidth = "x-kubex-maxwidth"
-
 // ResponseAlert alert text
 const ResponseAlert = "x-kubex-alert"
 
@@ -50,3 +44,9 @@ const ResponseAlertWarning = "x-kubex-alert-warning"
 
 // ResponseAlertDanger alert text
 const ResponseAlertDanger = "x-kubex-alert-danger"
+
+// ResponseAppendElement append element to the DOM
+const ResponseAppendElement = "x-kubex-append-element"
+
+// ResponseVanishElement vanish element from the DOM
+const ResponseVanishElement = "x-kubex-vanish-element"

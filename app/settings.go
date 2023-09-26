@@ -9,5 +9,6 @@ type Settings struct {
 type SettingsPanel struct {
 	Name        translation.Text
 	Description translation.Text
-	Settings    []Attribute
+	Settings    []Property
+	Order       int
 }
