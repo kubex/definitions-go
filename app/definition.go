@@ -24,6 +24,9 @@ type Definition struct {
 	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
 	ActivationSteps []ActivationStep   `json:"activationSteps,omitempty"`
 
+	Configuration     []SettingsPage
+	ConfigurationPath string // the path to use when settings are managed by the app
+
 	Homepage       string `json:"homepage,omitempty"`       // https:// url
 	TermsOfService string `json:"termsOfService,omitempty"` // https:// url
 	PrivacyPolicy  string `json:"privacyPolicy,omitempty"`  // https:// url

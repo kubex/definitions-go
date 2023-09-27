@@ -2,8 +2,10 @@ package app
 
 import "github.com/kubex/definitions-go/translation"
 
-type Settings struct {
-	Panels []SettingsPanel
+type SettingsPage struct {
+	Name         translation.Text
+	Panels       []SettingsPanel
+	AdvancedPath string
 }
 
 type SettingsPanel struct {
