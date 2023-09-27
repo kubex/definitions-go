@@ -3,6 +3,7 @@ package app
 import "github.com/kubex/definitions-go/translation"
 
 type SettingsPage struct {
+	ID           string
 	Name         translation.Text
 	Panels       []SettingsPanel
 	AdvancedPath string
