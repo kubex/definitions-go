@@ -3,9 +3,11 @@ package app
 import "github.com/kubex/definitions-go/translation"
 
 type Path struct {
-	ID          string           `json:"id"` // Allow the path to be linked
-	Name        translation.Text `json:"name,omitempty"`
-	Description translation.Text `json:"description,omitempty"`
+	ID             string           `json:"id"` // Allow the path to be linked
+	Name           translation.Text `json:"name,omitempty"`
+	Description    translation.Text `json:"description,omitempty"`
+	HideHeader     bool             `json:"hideHeader,omitempty"`
+	HideBreadcrumb bool             `json:"hideBreadcrumb,omitempty"`
 
 	Path   string `json:"path"` // with replacements, matches start, locating the most specific
 	Method string `json:"method,omitempty"`
@@ -18,7 +20,7 @@ type Path struct {
 }
 
 func NewPath(id, path string) *Path {
-	return &Path{ID: id, Path: path}
+	return &Path{ID: id, Path: path, HideHeader: false, HideBreadcrumb: false}
 }
 
 func (p *Path) WithNavigation(navigation ...Navigation) *Path {
@@ -53,5 +55,15 @@ func (p *Path) WithName(name translation.Text) *Path {
 
 func (p *Path) WithDescription(description translation.Text) *Path {
 	p.Description = description
+	return p
+}
+
+func (p *Path) RemoveBreadCrumbs() *Path {
+	p.HideBreadcrumb = true
+	return p
+}
+
+func (p *Path) RemoveHeader() *Path {
+	p.HideHeader = true
 	return p
 }
