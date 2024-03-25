@@ -20,7 +20,7 @@ type Path struct {
 }
 
 func NewPath(id, path string) *Path {
-	return &Path{ID: id, Path: path, HideHeader: false, HideBreadcrumb: false}
+	return &Path{ID: id, Path: path}
 }
 
 func (p *Path) WithNavigation(navigation ...Navigation) *Path {
