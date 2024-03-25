@@ -58,12 +58,12 @@ func (p *Path) WithDescription(description translation.Text) *Path {
 	return p
 }
 
-func (p *Path) RemoveBreadCrumbs() *Path {
+func (p *Path) WithoutBreadCrumbs() *Path {
 	p.HideBreadcrumb = true
 	return p
 }
 
-func (p *Path) RemoveHeader() *Path {
+func (p *Path) WithoutHeader() *Path {
 	p.HideHeader = true
 	return p
 }
