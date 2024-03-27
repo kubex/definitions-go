@@ -14,6 +14,7 @@ type Definition struct {
 	Name            translation.Text   `json:"name"`
 	Description     translation.Text   `json:"description,omitempty"`
 	Endpoint        string             `json:"endpoint,omitempty"`
+	DefaultPath     string             `json:"defaultPath,omitempty"` // Default path to use when opening the app
 	UIMode          UIMode             `json:"UIMode,omitempty"`
 	Category        Category           `json:"category,omitempty"`
 	Icon            string             `json:"icon,omitempty"`         // Default icon to use for this application
