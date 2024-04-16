@@ -20,6 +20,7 @@ type Definition struct {
 	Icon            string             `json:"icon,omitempty"`         // Default icon to use for this application
 	Dependencies    []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
 	Permissions     []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
+	Roles           []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application
 	Navigation      []Navigation       `json:"navigation,omitempty"`   // Global app navigation
 	Paths           []Path             `json:"paths,omitempty"`
 	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
