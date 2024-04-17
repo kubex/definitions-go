@@ -10,18 +10,21 @@ import (
 const VendorAppID = "kx" // setting your application ID to this value should be done for vendor shared
 
 type Definition struct {
-	ID              GlobalAppID        `json:"id"`
-	Name            translation.Text   `json:"name"`
-	Description     translation.Text   `json:"description,omitempty"`
-	Endpoint        string             `json:"endpoint,omitempty"`
-	DefaultPath     string             `json:"defaultPath,omitempty"` // Default path to use when opening the app
-	UIMode          UIMode             `json:"UIMode,omitempty"`
-	Category        Category           `json:"category,omitempty"`
-	Icon            string             `json:"icon,omitempty"`         // Default icon to use for this application
-	Dependencies    []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
-	Permissions     []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
-	Roles           []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application
-	Navigation      []Navigation       `json:"navigation,omitempty"`   // Global app navigation
+	ID          GlobalAppID `json:"id"`
+	Endpoint    string      `json:"endpoint,omitempty"`
+	DefaultPath string      `json:"defaultPath,omitempty"` // Default path to use when opening the app
+
+	Name        translation.Text `json:"name"`
+	Description translation.Text `json:"description,omitempty"`
+
+	UIMode   UIMode   `json:"UIMode,omitempty"`
+	Category Category `json:"category,omitempty"`
+	Icon     string   `json:"icon,omitempty"` // Default icon to use for this application
+
+	Dependencies []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
+	Permissions  []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
+	Roles        []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application
+	//Navigation      []Navigation       `json:"navigation,omitempty"`   // Global app navigation
 	Paths           []Path             `json:"paths,omitempty"`
 	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
 	ActivationSteps []ActivationStep   `json:"activationSteps,omitempty"`
