@@ -28,6 +28,7 @@ type Definition struct {
 	Paths           []Path             `json:"paths,omitempty"`
 	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
 	ActivationSteps []ActivationStep   `json:"activationSteps,omitempty"`
+	ListenToEvents  []ScopedKey        `json:"listenToEvents,omitempty"`
 
 	Configuration     []SettingsPage
 	ConfigurationPath string // the path to use when settings are managed by the app
