@@ -15,15 +15,15 @@ type Path struct {
 	RequestPermissions  []ScopedKey `json:"requestPermissions,omitempty"`  // Permissions that should be sent to this path
 	RequiredPermissions []ScopedKey `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to call this page
 
-	Navigation []Navigation `json:"navigation,omitempty"`
-	Actions    []Navigation `json:"actions,omitempty"`
+	Navigation []EntryPoint `json:"navigation,omitempty"`
+	Actions    []EntryPoint `json:"actions,omitempty"`
 }
 
 func NewPath(id, path string) *Path {
 	return &Path{ID: id, Path: path}
 }
 
-func (p *Path) WithNavigation(navigation ...Navigation) *Path {
+func (p *Path) WithNavigation(navigation ...EntryPoint) *Path {
 	p.Navigation = append(p.Navigation, navigation...)
 	return p
 }
@@ -38,7 +38,7 @@ func (p *Path) WithRequiredPermissions(permissions ...ScopedKey) *Path {
 	return p
 }
 
-func (p *Path) WithActions(actions ...Navigation) *Path {
+func (p *Path) WithActions(actions ...EntryPoint) *Path {
 	p.Actions = append(p.Actions, actions...)
 	return p
 }

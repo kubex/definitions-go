@@ -51,5 +51,5 @@ const ResponseAppendElement = "x-kubex-append-element"
 // ResponseVanishElement vanish element from the DOM
 const ResponseVanishElement = "x-kubex-vanish-element"
 
-// Refresh element
+// ResponseRefreshElement Refresh element
 const ResponseRefreshElement = "x-kubex-refresh-element"
