@@ -50,3 +50,6 @@ const ResponseAppendElement = "x-kubex-append-element"
 
 // ResponseVanishElement vanish element from the DOM
 const ResponseVanishElement = "x-kubex-vanish-element"
+
+// ResponseCloseModal close modal
+const ResponseCloseModal = "x-kubex-close-modal"
