@@ -24,7 +24,7 @@ type IntegrationPoint struct {
 	IntegrateApp        GlobalAppID         `json:"integrateApp,omitempty"`        // what app to load into
 	Location            IntegrationLocation `json:"location,omitempty"`            // Where to load the app
 	PathID              string              `json:"pathID,omitempty"`              //remote app path ID
-	Navigation          EntryPoint          `json:"navigation,omitempty"`          // Navigation, when panel location, dst path is used
+	EntryPoint          EntryPoint          `json:"entryPoint,omitempty"`          // Navigation, when panel location, dst path is used
 	RequiredPermissions []ScopedKey         `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
 }
 
@@ -37,7 +37,7 @@ type EntryPoint struct {
 	RequiredPermissions []ScopedKey      `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
 }
 
-func NewNavigation(destination string, text translation.Text) *EntryPoint {
+func NewEntryPoint(destination string, text translation.Text) *EntryPoint {
 	return &EntryPoint{
 		Text:            text,
 		DestinationPath: destination,
