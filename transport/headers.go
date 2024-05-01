@@ -53,3 +53,6 @@ const ResponseVanishElement = "x-kubex-vanish-element"
 
 // ResponseCloseModal close modal
 const ResponseCloseModal = "x-kubex-close-modal"
+
+// ResponseBasisPx ideal viewport in pixels (not guaranteed)
+const ResponseBasisPx = "x-kubex-basis-px"
