@@ -20,10 +20,11 @@ const (
 )
 
 type IntegrationPoint struct {
-	IntegrateApp        GlobalAppID         `json:"integrateApp,omitempty"`        // what app to load into
-	Location            IntegrationLocation `json:"location,omitempty"`            // Where to load the app
-	PathID              string              `json:"pathID,omitempty"`              //remote app path ID
-	EntryPoint          EntryPoint          `json:"entryPoint,omitempty"`          // Navigation, when panel location, dst path is used
+	IntegrateApp        GlobalAppID         `json:"integrateApp,omitempty"`        // Which app to integrate into
+	Location            IntegrationLocation `json:"location,omitempty"`            // Where to place the integration
+	LocationID          string              `json:"locationID,omitempty"`          // Location ID if multiple locations available
+	PathID              string              `json:"pathID,omitempty"`              // Remote app path ID
+	EntryPoint          EntryPoint          `json:"entryPoint,omitempty"`          // How the integration is presented
 	RequiredPermissions []ScopedKey         `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
 }
 
