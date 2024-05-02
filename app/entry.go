@@ -6,7 +6,6 @@ type IntegrationLocation string
 
 const (
 	IntegrationLocationPageNav IntegrationLocation = "nav.page" // Load within the page
-	IntegrationLocationAppNav  IntegrationLocation = "nav.app"  // Load as the primary app
 	IntegrationLocationAction  IntegrationLocation = "action"   // Perform an action, expecting a toast response
 	IntegrationLocationPanel   IntegrationLocation = "panel"    // Load within a panel
 )
