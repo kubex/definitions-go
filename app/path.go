@@ -11,6 +11,7 @@ type Path struct {
 	Description    translation.Text `json:"description,omitempty"`
 	HideHeader     bool             `json:"hideHeader,omitempty"`
 	HideBreadcrumb bool             `json:"hideBreadcrumb,omitempty"`
+	PromptOnExit   bool             `json:"promptOnExit,omitempty"`
 
 	RequestPermissions  []ScopedKey `json:"requestPermissions,omitempty"`  // Permissions that should be sent to this path
 	RequiredPermissions []ScopedKey `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to call this page
