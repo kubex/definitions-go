@@ -3,15 +3,17 @@ package app
 import "github.com/kubex/definitions-go/translation"
 
 type Path struct {
-	ID     string `json:"id"`   // Allow the path to be linked
-	Path   string `json:"path"` // with replacements, matches start, locating the most specific
-	Method string `json:"method,omitempty"`
+	ID     string `json:"id"`               // Allow the path to be linked
+	Path   string `json:"path"`             // with replacements, matches start, locating the most specific
+	Method string `json:"method,omitempty"` // HTTP Method, blank for any
 
-	Name           translation.Text `json:"name,omitempty"`
-	Description    translation.Text `json:"description,omitempty"`
-	HideHeader     bool             `json:"hideHeader,omitempty"`
-	HideBreadcrumb bool             `json:"hideBreadcrumb,omitempty"`
-	PromptOnExit   bool             `json:"promptOnExit,omitempty"`
+	Name        translation.Text `json:"name,omitempty"`
+	Description translation.Text `json:"description,omitempty"`
+
+	HideHeader     bool `json:"hideHeader,omitempty"`     // Hide the header when this path is active
+	HideBreadcrumb bool `json:"hideBreadcrumb,omitempty"` // Hide the breadcrumb when this path is active
+	PromptOnExit   bool `json:"promptOnExit,omitempty"`   // Prompt the user when they try to leave the page
+	HoverCard      bool `json:"hoverCard,omitempty"`      // If this path can be displayed as a hoverCard
 
 	RequestPermissions  []ScopedKey `json:"requestPermissions,omitempty"`  // Permissions that should be sent to this path
 	RequiredPermissions []ScopedKey `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to call this page
