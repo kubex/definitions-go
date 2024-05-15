@@ -49,12 +49,14 @@ func (d *Definition) GetHash(updateIfEmpty bool) string {
 	d.Hash = ""
 	jsonBytes, _ := json.Marshal(d)
 	result := fmt.Sprintf("%x", md5.Sum(jsonBytes))
-	if currentHash == "" && updateIfEmpty {
-		d.Hash = result
-	} else {
-		d.Hash = currentHash
+	if currentHash == "" {
+		if updateIfEmpty {
+			d.Hash = result
+		}
+		return result
 	}
-	return result
+	d.Hash = currentHash
+	return d.Hash
 }
 
 func (d *Definition) WithPath(path ...Path) *Definition {
