@@ -1,8 +1,10 @@
 package app
 
 import (
+	"crypto/md5"
 	"encoding/json"
 	"errors"
+	"fmt"
 
 	"github.com/kubex/definitions-go/translation"
 )
@@ -40,6 +42,19 @@ type Definition struct {
 	SupportEmail string `json:"supportEmail,omitempty"`
 
 	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, latest hash can be returned in HealthResponse
+}
+
+func (d *Definition) GetHash(updateIfEmpty bool) string {
+	currentHash := d.Hash
+	d.Hash = ""
+	jsonBytes, _ := json.Marshal(d)
+	result := fmt.Sprintf("%x", md5.Sum(jsonBytes))
+	if currentHash == "" && updateIfEmpty {
+		d.Hash = result
+	} else {
+		d.Hash = currentHash
+	}
+	return result
 }
 
 func (d *Definition) WithPath(path ...Path) *Definition {
