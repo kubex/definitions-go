@@ -41,6 +41,8 @@ type Definition struct {
 
 	SupportEmail string `json:"supportEmail,omitempty"`
 
+	PermittedProxyPaths []string `json:"permittedProxyPaths,omitempty"` // Paths that can be proxied by the platform, without auth / modification
+
 	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, latest hash can be returned in HealthResponse
 }
 
