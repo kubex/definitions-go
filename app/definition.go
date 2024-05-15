@@ -38,6 +38,8 @@ type Definition struct {
 	PrivacyPolicy  string `json:"privacyPolicy,omitempty"`  // https:// url
 
 	SupportEmail string `json:"supportEmail,omitempty"`
+
+	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, latest hash can be returned in HealthResponse
 }
 
 func (d *Definition) WithPath(path ...Path) *Definition {
