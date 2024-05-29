@@ -3,9 +3,10 @@ package app
 import "github.com/kubex/definitions-go/translation"
 
 type Permission struct {
-	Key         string           `json:"key"`
-	Name        translation.Text `json:"name"`
-	Description translation.Text `json:"description,omitempty"`
+	Key         string                      `json:"key"`
+	Name        translation.Text            `json:"name"`
+	Description translation.Text            `json:"description,omitempty"`
+	Meta        map[string]translation.Text `json:"meta,omitempty"`
 }
 
 type PermissionEffect string
@@ -25,7 +26,8 @@ type PermissionPolicy struct {
 const PermissionResourceAll = "*"
 
 type PermissionStatement struct {
-	Effect     PermissionEffect `json:"e"`
-	Permission ScopedKey        `json:"p"`
-	Resource   string           `json:"r"` // path or resource indicator defined by the app
+	Effect     PermissionEffect  `json:"e"`
+	Permission ScopedKey         `json:"p"`
+	Resource   string            `json:"r"` // path or resource indicator defined by the app
+	Meta       map[string]string `json:"m,omitempty"`
 }
