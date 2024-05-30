@@ -25,6 +25,8 @@ type IntegrationPoint struct {
 	LocationID          string              `json:"locationID,omitempty"`          // Location ID if multiple locations available
 	PathID              string              `json:"pathID,omitempty"`              // Remote app path ID
 	EntryPoint          EntryPoint          `json:"entryPoint,omitempty"`          // How the integration is presented
+	PanelActions        []EntryPoint        `json:"panelActions,omitempty"`        // Actions to add to the panel
+	PanelTabs           []EntryPoint        `json:"panelTabs,omitempty"`           // Tabs to show - panels only
 	RequiredPermissions []ScopedKey         `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
 }
 
