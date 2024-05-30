@@ -56,3 +56,6 @@ const ResponseCloseModal = "x-kubex-close-modal"
 
 // ResponseBasisPx ideal viewport in pixels (not guaranteed)
 const ResponseBasisPx = "x-kubex-basis-px"
+
+// ResponseRemoveSelf remove self from the DOM
+const ResponseRemoveSelf = "x-kubex-remove-self"
