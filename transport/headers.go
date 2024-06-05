@@ -60,5 +60,5 @@ const ResponseBasisPx = "x-kubex-basis-px"
 // ResponseRemoveSelf remove self from the DOM
 const ResponseRemoveSelf = "x-kubex-remove-self"
 
-// ResponseRefresh refresh (empty to refresh self or space ID[#fragment])
+// ResponseRefresh refresh (self, referer or space-ID[#fragment])
 const ResponseRefresh = "x-kubex-refresh"
