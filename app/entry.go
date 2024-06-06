@@ -24,6 +24,7 @@ type IntegrationPoint struct {
 	Location            IntegrationLocation `json:"location,omitempty"`            // Where to place the integration
 	LocationID          string              `json:"locationID,omitempty"`          // Location ID if multiple locations available
 	PathID              string              `json:"pathID,omitempty"`              // Remote app path ID
+	PreferredWidth      int                 `json:"preferredWidth,omitempty"`      // Preferred width of the integration
 	EntryPoint          EntryPoint          `json:"entryPoint,omitempty"`          // How the integration is presented
 	PanelActions        []EntryPoint        `json:"panelActions,omitempty"`        // Actions to add to the panel
 	PanelTabs           []EntryPoint        `json:"panelTabs,omitempty"`           // Tabs to show - panels only
