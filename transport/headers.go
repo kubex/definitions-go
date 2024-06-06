@@ -24,7 +24,7 @@ const RequestAuthorization = "x-kx-authorization"
 // RequestAuthentication JSON access credentials, provided by the app e.g. {"accessToken":"xx"}
 const RequestAuthentication = "x-kx-authentication"
 
-// ResponseUri Uri to set in the address bar for the current request
+// ResponseUri DEPRECATED Uri to set in the address bar for the current request
 const ResponseUri = "x-kubex-uri"
 
 // ResponseDebug Debug object for the browser
@@ -62,3 +62,6 @@ const ResponseRemoveSelf = "x-kubex-remove-self"
 
 // ResponseRefresh refresh (self, referer or space-ID[#fragment])
 const ResponseRefresh = "x-kubex-refresh"
+
+// ResponseForwardUri forward the browser to a new URI
+const ResponseForwardUri = "x-kubex-forward-uri"
