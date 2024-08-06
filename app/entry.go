@@ -5,9 +5,12 @@ import "github.com/kubex/definitions-go/translation"
 type IntegrationLocation string
 
 const (
-	IntegrationLocationPageNav IntegrationLocation = "nav.page" // Load within the page
-	IntegrationLocationAction  IntegrationLocation = "action"   // Perform an action, expecting a toast response
-	IntegrationLocationPanel   IntegrationLocation = "panel"    // Load within a panel
+	IntegrationLocationPage   IntegrationLocation = "page"   // Top Level Page Navigation
+	IntegrationLocationTab    IntegrationLocation = "tab"    // Header Navigation on Page
+	IntegrationLocationAction IntegrationLocation = "action" // <app-actions>
+	IntegrationLocationPanel  IntegrationLocation = "panel"  // <app-panel>
+	// Deprecated: IntegrationLocationPageNav
+	IntegrationLocationPageNav IntegrationLocation = IntegrationLocationTab
 )
 
 type LaunchMode string
