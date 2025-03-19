@@ -31,6 +31,7 @@ type Definition struct {
 	ActivationSteps []ActivationStep   `json:"activationSteps,omitempty"`
 	ListenToEvents  []ScopedKey        `json:"listenToEvents,omitempty"`
 	Navigation      []Navigation       `json:"navigation,omitempty"` // App navigation
+	NavigationUri   string             `json:"navigationUri,omitempty"`
 
 	Configuration     []SettingsPage
 	ConfigurationPath string // the path to use when settings are managed by the app
