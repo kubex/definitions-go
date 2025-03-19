@@ -23,14 +23,14 @@ type Definition struct {
 	Category Category `json:"category,omitempty"`
 	Icon     string   `json:"icon,omitempty"` // Default icon to use for this application
 
-	Dependencies []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
-	Permissions  []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
-	Roles        []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application
-	//EntryPoint      []EntryPoint       `json:"navigation,omitempty"`   // Global app navigation
+	Dependencies    []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
+	Permissions     []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
+	Roles           []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application
 	Paths           []Path             `json:"paths,omitempty"`
 	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
 	ActivationSteps []ActivationStep   `json:"activationSteps,omitempty"`
 	ListenToEvents  []ScopedKey        `json:"listenToEvents,omitempty"`
+	Navigation      []Navigation       `json:"navigation,omitempty"` // App navigation
 
 	Configuration     []SettingsPage
 	ConfigurationPath string // the path to use when settings are managed by the app

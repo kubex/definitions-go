@@ -35,6 +35,11 @@ type IntegrationPoint struct {
 	RequiredPermissions []ScopedKey         `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
 }
 
+type Navigation struct {
+	Title translation.Text `json:"title,omitempty"`
+	Items []EntryPoint     `json:"items,omitempty"`
+}
+
 type EntryPoint struct {
 	Icon                string           `json:"icon,omitempty"` // Material Design Icon Name
 	Text                translation.Text `json:"text,omitempty"`
