@@ -42,6 +42,8 @@ type Definition struct {
 
 	SupportEmail string `json:"supportEmail,omitempty"`
 
+	PrefixRedirect map[string]string `json:"prefixRedirect,omitempty"` // Matching prefixes to redirect  e.g. [CST:CST => 'view/$1']
+
 	PermittedProxyPaths []string `json:"permittedProxyPaths,omitempty"` // Paths that can be proxied by the platform, without auth / modification
 
 	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, latest hash can be returned in HealthResponse
