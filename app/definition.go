@@ -42,7 +42,8 @@ type Definition struct {
 
 	SupportEmail string `json:"supportEmail,omitempty"`
 
-	PrefixRedirect map[string]string `json:"prefixRedirect,omitempty"` // Matching prefixes to redirect  e.g. [CST:CST => 'view/$1']
+	PrefixRedirect map[string]string `json:"prefixRedirect,omitempty"` // Matching prefixes to redirect  e.g. [CST:CST => 'view/$1'] $1 includes the prefix
+	QuickCodes     map[string]string `json:"quickCodes,omitempty"`     // Matching Codes to redirect  e.g. [CST => 'view/$1'] $1 is replaced by everything after the code
 
 	PermittedProxyPaths []string `json:"permittedProxyPaths,omitempty"` // Paths that can be proxied by the platform, without auth / modification
 
