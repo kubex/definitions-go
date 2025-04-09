@@ -51,6 +51,9 @@ type Definition struct {
 }
 
 func (d *Definition) GetHash(updateIfEmpty bool) string {
+	if d == nil {
+		return ""
+	}
 	currentHash := d.Hash
 	d.Hash = ""
 	jsonBytes, _ := json.Marshal(d)
