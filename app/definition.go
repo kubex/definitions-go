@@ -54,17 +54,16 @@ func (d *Definition) GetHash(updateIfEmpty bool) string {
 	if d == nil {
 		return ""
 	}
-	currentHash := d.Hash
-	d.Hash = ""
-	jsonBytes, _ := json.Marshal(d)
-	result := fmt.Sprintf("%x", md5.Sum(jsonBytes))
-	if currentHash == "" {
+	if d.Hash == "" {
+		cp := *d
+		cp.Hash = ""
+		jsonBytes, _ := json.Marshal(cp)
+		result := fmt.Sprintf("%x", md5.Sum(jsonBytes))
 		if updateIfEmpty {
 			d.Hash = result
 		}
 		return result
 	}
-	d.Hash = currentHash
 	return d.Hash
 }
 
