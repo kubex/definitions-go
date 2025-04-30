@@ -23,17 +23,25 @@ const (
 )
 
 type IntegrationPoint struct {
-	IntegrateApp        ScopedKey           `json:"integrateApp,omitempty"`        // Which app to integrate into
-	Location            IntegrationLocation `json:"location,omitempty"`            // Where to place the integration
-	LocationID          string              `json:"locationID,omitempty"`          // Location ID if multiple locations available
-	PathID              string              `json:"pathID,omitempty"`              // Remote app path ID
-	PreferredWidth      int                 `json:"preferredWidth,omitempty"`      // Preferred width of the integration
-	MultiPanel          bool                `json:"multiPanel,omitempty"`          // Should the integration Panel be transparent
-	EntryPoint          EntryPoint          `json:"entryPoint,omitempty"`          // How the integration is presented
-	PanelActions        []EntryPoint        `json:"panelActions,omitempty"`        // Actions to add to the panel
-	PanelTabs           []EntryPoint        `json:"panelTabs,omitempty"`           // Tabs to show - panels only
-	RequiredPermissions []ScopedKey         `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
+	IntegrateApp        ScopedKey                    `json:"integrateApp,omitempty"`        // Which app to integrate into
+	Location            IntegrationLocation          `json:"location,omitempty"`            // Where to place the integration
+	LocationID          string                       `json:"locationID,omitempty"`          // Location ID if multiple locations available
+	PathID              string                       `json:"pathID,omitempty"`              // Remote app path ID
+	PreferredWidth      int                          `json:"preferredWidth,omitempty"`      // Preferred width of the integration
+	MultiPanel          bool                         `json:"multiPanel,omitempty"`          // Should the integration Panel be transparent
+	EntryPoint          EntryPoint                   `json:"entryPoint,omitempty"`          // How the integration is presented
+	PanelActions        []EntryPoint                 `json:"panelActions,omitempty"`        // Actions to add to the panel
+	PanelTabs           []EntryPoint                 `json:"panelTabs,omitempty"`           // Tabs to show - panels only
+	Preferences         []IntegrationPointPreference `json:"preferences,omitempty"`         // Preferences for the integration
+	RequiredPermissions []ScopedKey                  `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
 }
+
+type IntegrationPointPreference int32
+
+const (
+	IntegrationPointPreferenceNone               IntegrationPointPreference = 0
+	IntegrationPointPreferencePanelTabsAsIconBar IntegrationPointPreference = 1
+)
 
 type Navigation struct {
 	Title translation.Text `json:"title,omitempty"`
