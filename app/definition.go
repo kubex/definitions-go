@@ -47,6 +47,8 @@ type Definition struct {
 
 	PermittedProxyPaths []string `json:"permittedProxyPaths,omitempty"` // Paths that can be proxied by the platform, without auth / modification
 
+	SLIs []SLI `json:"slis,omitempty"` // KPIs to be collected for application metrics
+
 	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, latest hash can be returned in HealthResponse
 }
 
