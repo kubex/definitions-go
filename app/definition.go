@@ -44,6 +44,9 @@ type Definition struct {
 
 	PrefixRedirect map[string]string `json:"prefixRedirect,omitempty"` // Matching prefixes to redirect  e.g. [CST:CST => 'view/$1'] $1 includes the prefix
 	QuickCodes     map[string]string `json:"quickCodes,omitempty"`     // Matching Codes to redirect  e.g. [CST => 'view/$1'] $1 is replaced by everything after the code
+	SearchPatterns []SearchPattern   `json:"searchPatterns,omitempty"` // Search patterns to use for this app, used in the global search
+
+	QuickActions []EntryPoint `json:"quickActions,omitempty"` // Quick actions made available in the outer shell
 
 	PermittedProxyPaths []string `json:"permittedProxyPaths,omitempty"` // Paths that can be proxied by the platform, without auth / modification
 
