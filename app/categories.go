@@ -1,6 +1,10 @@
 package app
 
-import "strings"
+import (
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
+	"strings"
+)
 
 type Category string
 
@@ -33,5 +37,5 @@ const (
 )
 
 func (c Category) Name() string {
-	return strings.ToTitle(string(c))
+	return cases.Title(language.English, cases.Compact).String(strings.ReplaceAll(string(c), "-", " "))
 }
