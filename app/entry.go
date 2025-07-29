@@ -31,6 +31,8 @@ type IntegrationPoint struct {
 	PathID              string                       `json:"pathID,omitempty"`              // Remote app path ID
 	PreferredWidth      int                          `json:"preferredWidth,omitempty"`      // Preferred width of the integration
 	MultiPanel          bool                         `json:"multiPanel,omitempty"`          // Should the integration Panel be transparent
+	Category            Category                     `json:"category,omitempty"`            // Category, if different from the main app
+	Priority            int                          `json:"priority,omitempty"`            // Priority of the integration point, higher is more important
 	EntryPoint          EntryPoint                   `json:"entryPoint,omitempty"`          // How the integration is presented
 	PanelActions        []EntryPoint                 `json:"panelActions,omitempty"`        // Actions to add to the panel
 	PanelTabs           []EntryPoint                 `json:"panelTabs,omitempty"`           // Tabs to show - panels only
