@@ -48,9 +48,11 @@ type Definition struct {
 
 	QuickActions []EntryPoint `json:"quickActions,omitempty"` // Quick actions made available in the outer shell
 
+	SearchPanelPath string `json:"searchPanelPath,omitempty"` // Path to post search queries to
+
 	PermittedProxyPaths []string `json:"permittedProxyPaths,omitempty"` // Paths that can be proxied by the platform, without auth / modification
 
-	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, latest hash can be returned in HealthResponse
+	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, the latest hash can be returned in HealthResponse
 }
 
 func (d *Definition) GetHash(updateIfEmpty bool) string {
