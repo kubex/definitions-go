@@ -24,6 +24,9 @@ const RequestAuthorization = "x-kx-authorization"
 // RequestAuthentication JSON access credentials, provided by the app e.g. {"accessToken":"xx"}
 const RequestAuthentication = "x-kx-authentication"
 
+// RequestWorkspaceHost The full workspace host the user is currently in
+const RequestWorkspaceHost = "x-kx-workspace-host" // Host of the workspace, used for routing
+
 // ResponseDebug Debug object for the browser
 const ResponseDebug = "x-kubex-debug"
 
