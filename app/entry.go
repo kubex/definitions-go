@@ -28,6 +28,8 @@ type IntegrationPoint struct {
 	IntegrateApp        ScopedKey                    `json:"integrateApp,omitempty"`        // Which app to integrate into
 	Location            IntegrationLocation          `json:"location,omitempty"`            // Where to place the integration
 	LocationID          string                       `json:"locationID,omitempty"`          // Location ID if multiple locations available
+	RequireTags         []string                     `json:"requireTags,omitempty"`         // Tags that must be set on the page to see this item
+	ExcludeTags         []string                     `json:"excludeTags,omitempty"`         // Tags that must NOT be set on the page to see this item
 	PathID              string                       `json:"pathID,omitempty"`              // Remote app path ID
 	PreferredWidth      int                          `json:"preferredWidth,omitempty"`      // Preferred width of the integration
 	MultiPanel          bool                         `json:"multiPanel,omitempty"`          // Should the integration Panel be transparent
