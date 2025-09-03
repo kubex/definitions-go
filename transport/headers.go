@@ -72,5 +72,5 @@ const ResponseForwardGaid = "x-kubex-forward-gaid" // GAID of the forward URI
 // ResponseCount item count
 const ResponseCount = "x-kubex-count"
 
-// ResponseColour item colour
-const ResponseColour = "x-kubex-colour"
+// ResponseColor item color
+const ResponseColor = "x-kubex-color"
