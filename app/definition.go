@@ -22,7 +22,7 @@ type Definition struct {
 	UIMode      UIMode   `json:"UIMode,omitempty"`
 	Category    Category `json:"category,omitempty"`
 	Icon        string   `json:"icon,omitempty"` // Default icon to use for this application
-	DisableCsrf bool     `json:"disableCsrf,omitempty"`
+	DisableCSRF bool     `json:"disableCSRF,omitempty"`
 
 	Dependencies    []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
 	Permissions     []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
