@@ -59,7 +59,7 @@ type EntryPoint struct {
 	Text                translation.Text `json:"text,omitempty"`
 	Title               translation.Text `json:"title,omitempty"`
 	DestinationPath     string           `json:"destinationPath,omitempty"`
-	CountPath           string           `json:"countPath,omitempty"` // Count Path - expanding actions only
+	ContextHeaders      bool             `json:"contextHeaders,omitempty"` // Should context headers be shown
 	LaunchMode          LaunchMode       `json:"launchMode,omitempty"`
 	RequiredPermissions []ScopedKey      `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to see this item
 }
