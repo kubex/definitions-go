@@ -19,10 +19,10 @@ type Definition struct {
 	Name        translation.Text `json:"name"`
 	Description translation.Text `json:"description,omitempty"`
 
-	UIMode      UIMode   `json:"UIMode,omitempty"`
-	Category    Category `json:"category,omitempty"`
-	Icon        string   `json:"icon,omitempty"` // Default icon to use for this application
-	DisableCSRF bool     `json:"disableCSRF,omitempty"`
+	UIMode             UIMode   `json:"UIMode,omitempty"`
+	Category           Category `json:"category,omitempty"`
+	Icon               string   `json:"icon,omitempty"` // Default icon to use for this application
+	SkipCSRFValidation bool     `json:"skipCSRFValidation,omitempty"`
 
 	Dependencies    []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
 	Permissions     []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
