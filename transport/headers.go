@@ -74,3 +74,6 @@ const ResponseCount = "x-kubex-count"
 
 // ResponseColor item color
 const ResponseColor = "x-kubex-color"
+
+// ResponseClearValue clear the value of an input field
+const ResponseClearValue = "x-kubex-clear-value"
