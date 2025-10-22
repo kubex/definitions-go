@@ -3,10 +3,11 @@ package app
 import "github.com/kubex/definitions-go/translation"
 
 type Permission struct {
-	Key         string           `json:"key"`
-	Name        translation.Text `json:"name"`
-	Description translation.Text `json:"description,omitempty"`
-	Meta        []PermissionMeta `json:"meta,omitempty"`
+	Key         string                 `json:"key"`
+	Name        translation.Text       `json:"name"`
+	Description translation.Text       `json:"description,omitempty"`
+	Meta        []PermissionMeta       `json:"meta,omitempty"`
+	Constraints []PermissionConstraint `json:"constraints,omitempty"`
 }
 
 type PermissionMeta struct {
