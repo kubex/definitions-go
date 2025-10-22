@@ -17,9 +17,8 @@ type PermissionMeta struct {
 }
 
 type PermissionConstraint struct {
-	Type     PermissionConstraintType     `json:"type"`
-	Operator PermissionConstraintOperator `json:"operator"`
-	Value    interface{}                  `json:"value"`
+	Operand string                   `json:"operand"`
+	Type    PermissionConstraintType `json:"type"`
 }
 
 type PermissionConstraintType string
