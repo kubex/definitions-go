@@ -15,6 +15,30 @@ type PermissionMeta struct {
 	Description translation.Text `json:"description,omitempty"`
 }
 
+type PermissionConstraint struct {
+	Type     PermissionConstraintType     `json:"type"`
+	Operator PermissionConstraintOperator `json:"operator"`
+	Value    interface{}                  `json:"value"`
+}
+
+type PermissionConstraintType string
+
+const (
+	TypeValue    PermissionConstraintType = "value"
+	TypeLocation PermissionConstraintType = "location"
+)
+
+type PermissionConstraintOperator string
+
+const (
+	OperatorLessThan           PermissionConstraintOperator = "lessThan"
+	OperatorGreaterThan        PermissionConstraintOperator = "greaterThan"
+	OperatorEqual              PermissionConstraintOperator = "equal"
+	OperatorNotEqual           PermissionConstraintOperator = "notEqual"
+	OperatorLessThanOrEqual    PermissionConstraintOperator = "lessThanOrEqual"
+	OperatorGreaterThanOrEqual PermissionConstraintOperator = "greaterThanOrEqual"
+)
+
 type PermissionEffect string
 
 const (
