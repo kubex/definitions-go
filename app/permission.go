@@ -17,6 +17,7 @@ type PermissionMeta struct {
 }
 
 type PermissionConstraint struct {
+	Field   string                   `json:"field"`
 	Operand string                   `json:"operand"`
 	Type    PermissionConstraintType `json:"type"`
 }
