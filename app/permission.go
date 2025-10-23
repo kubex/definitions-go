@@ -40,6 +40,15 @@ const (
 	OperatorGreaterThanOrEqual PermissionConstraintOperator = "greaterThanOrEqual"
 )
 
+var PermissionConstraintOperatorDisplayValues = map[PermissionConstraintOperator]string{
+	OperatorEqual:              "=",
+	OperatorNotEqual:           "!=",
+	OperatorLessThan:           "<",
+	OperatorLessThanOrEqual:    "<=",
+	OperatorGreaterThan:        ">",
+	OperatorGreaterThanOrEqual: ">=",
+}
+
 type PermissionEffect string
 
 const (
