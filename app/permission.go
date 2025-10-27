@@ -17,36 +17,34 @@ type PermissionMeta struct {
 }
 
 type PermissionConstraint struct {
-	Field   string                   `json:"field"`
-	Operand string                   `json:"operand"`
-	Type    PermissionConstraintType `json:"type"`
+	Field string                   `json:"field"`
+	Type  PermissionConstraintType `json:"type"`
 }
 
 type PermissionConstraintType string
 
 const (
-	TypeValue    PermissionConstraintType = "value"
-	TypeLocation PermissionConstraintType = "location"
+	PermissionConstraintTypeValue PermissionConstraintType = "value"
 )
 
 type PermissionConstraintOperator string
 
 const (
-	OperatorLessThan           PermissionConstraintOperator = "lessThan"
-	OperatorGreaterThan        PermissionConstraintOperator = "greaterThan"
-	OperatorEqual              PermissionConstraintOperator = "equal"
-	OperatorNotEqual           PermissionConstraintOperator = "notEqual"
-	OperatorLessThanOrEqual    PermissionConstraintOperator = "lessThanOrEqual"
-	OperatorGreaterThanOrEqual PermissionConstraintOperator = "greaterThanOrEqual"
+	PermissionConstraintOperatorLessThan           PermissionConstraintOperator = "lessThan"
+	PermissionConstraintOperatorGreaterThan        PermissionConstraintOperator = "greaterThan"
+	PermissionConstraintOperatorEqual              PermissionConstraintOperator = "equal"
+	PermissionConstraintOperatorNotEqual           PermissionConstraintOperator = "notEqual"
+	PermissionConstraintOperatorLessThanOrEqual    PermissionConstraintOperator = "lessThanOrEqual"
+	PermissionConstraintOperatorGreaterThanOrEqual PermissionConstraintOperator = "greaterThanOrEqual"
 )
 
 var PermissionConstraintOperatorDisplayValues = map[PermissionConstraintOperator]string{
-	OperatorEqual:              "=",
-	OperatorNotEqual:           "!=",
-	OperatorLessThan:           "<",
-	OperatorLessThanOrEqual:    "<=",
-	OperatorGreaterThan:        ">",
-	OperatorGreaterThanOrEqual: ">=",
+	PermissionConstraintOperatorEqual:              "=",
+	PermissionConstraintOperatorNotEqual:           "!=",
+	PermissionConstraintOperatorLessThan:           "<",
+	PermissionConstraintOperatorLessThanOrEqual:    "<=",
+	PermissionConstraintOperatorGreaterThan:        ">",
+	PermissionConstraintOperatorGreaterThanOrEqual: ">=",
 }
 
 type PermissionEffect string
