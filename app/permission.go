@@ -73,7 +73,7 @@ type PermissionStatement struct {
 
 type PermissionConstraint struct {
 	Field    string                       `json:"f"`
-	Type     PermissionConstraintType     `json:"g"`
+	Type     PermissionConstraintType     `json:"t"`
 	Operator PermissionConstraintOperator `json:"o"`
 	Value    interface{}                  `json:"v"`
 }
