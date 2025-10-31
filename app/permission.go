@@ -13,6 +13,13 @@ type PermissionMeta struct {
 	Key         string           `json:"key"`
 	Name        translation.Text `json:"name"`
 	Description translation.Text `json:"description,omitempty"`
+	Option      PermissionOption `json:"option,omitempty"`
+}
+
+type PermissionOption struct {
+	AvailableValues map[string]string   `json:"availableValues,omitempty"`
+	Type            PropertyType        `json:"type"`
+	DisplayType     PropertyDisplayType `json:"displayType,omitempty"`
 }
 
 type PermissionEffect string
@@ -32,8 +39,8 @@ type PermissionPolicy struct {
 const PermissionResourceAll = "*"
 
 type PermissionStatement struct {
-	Effect     PermissionEffect  `json:"e"`
-	Permission ScopedKey         `json:"p"`
-	Resource   string            `json:"r"` // path or resource indicator defined by the app
-	Meta       map[string]string `json:"m,omitempty"`
+	Effect     PermissionEffect `json:"e"`
+	Permission ScopedKey        `json:"p"`
+	Resource   string           `json:"r"` // path or resource indicator defined by the app
+	Options    []string         `json:"o,omitempty"`
 }
