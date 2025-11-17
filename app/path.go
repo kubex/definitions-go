@@ -2,6 +2,14 @@ package app
 
 import "github.com/kubex/definitions-go/translation"
 
+type BuiltInResource string
+
+const (
+	BuiltInResourceBrand      BuiltInResource = "brand"
+	BuiltInResourceDepartment BuiltInResource = "department"
+	BuiltInResourceChannel    BuiltInResource = "channel"
+)
+
 type Path struct {
 	ID     string `json:"id"`               // Allow the path to be linked
 	Path   string `json:"path"`             // with replacements, matches start, locating the most specific
@@ -17,6 +25,8 @@ type Path struct {
 
 	RequestPermissions  []ScopedKey `json:"requestPermissions,omitempty"`  // Permissions that should be sent to this path
 	RequiredPermissions []ScopedKey `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to call this page
+
+	BuiltInResources []BuiltInResource `json:"builtInResources,omitempty"`
 
 	Navigation []EntryPoint `json:"navigation,omitempty"`
 	Actions    []EntryPoint `json:"actions,omitempty"`
