@@ -36,6 +36,11 @@ const RequestDepartments = "x-kx-departments"
 // RequestChannels CSV of permitted channels
 const RequestChannels = "x-kx-channels"
 
+const RequestEditorID = "x-kx-editor-id"
+const RequestFetchStyle = "x-kx-fetch-style"
+const RequestContextData = "x-kx-context-data"
+const RequestActiveTab = "x-kx-active-tab"
+
 // ResponseDebug Debug object for the browser
 const ResponseDebug = "x-kubex-debug"
 
