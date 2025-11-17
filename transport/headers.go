@@ -27,6 +27,15 @@ const RequestAuthentication = "x-kx-authentication"
 // RequestWorkspaceHost The full workspace host the user is currently in
 const RequestWorkspaceHost = "x-kx-workspace-host" // Host of the workspace, used for routing
 
+// RequestBrands CSV of permitted brands
+const RequestBrands = "x-kx-brands"
+
+// RequestDepartments CSV of permitted departments
+const RequestDepartments = "x-kx-departments"
+
+// RequestChannels CSV of permitted channels
+const RequestChannels = "x-kx-channels"
+
 // ResponseDebug Debug object for the browser
 const ResponseDebug = "x-kubex-debug"
 
