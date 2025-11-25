@@ -23,7 +23,8 @@ func (r Resource) ToHeader() string {
 }
 
 func GetResources(from string) []Resource {
-	var resources []Resource
+	// initialize as empty slice (not nil) so callers consistently receive [] even for empty input
+	resources := make([]Resource, 0)
 	rawRes := strings.Split(from, ",")
 
 	for _, res := range rawRes {
@@ -39,6 +40,10 @@ func GetResources(from string) []Resource {
 			resource.Level, _ = strconv.ParseInt(lvl[1], 10, 64)
 		}
 		resource.ID = lvl[0]
+		// Append parsed resource to the collection
+		if resource.ID != "" {
+			resources = append(resources, resource)
+		}
 	}
 
 	return resources
