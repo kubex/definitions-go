@@ -15,3 +15,8 @@ func (t *Text) Get(language string) string {
 func String(text string) Text {
 	return Text{Fallback: text}
 }
+
+func FromMap(m map[string]string, defaultLanguage string) Text {
+	fallback := m[defaultLanguage]
+	return Text{Translations: m, Fallback: fallback}
+}
