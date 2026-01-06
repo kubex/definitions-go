@@ -84,6 +84,9 @@ type PropertyDefinition struct {
 	MaxOptions int
 
 	//TODO: Display when other property conditions are met
+
+	VendorShared    bool // Property is shared across all apps from the same vendor
+	WorkspaceShared bool // Property is shared across all apps in the same workspace
 }
 
 type PropertyDisplayType string
