@@ -1,8 +1,9 @@
 package app
 
 import (
-	"github.com/kubex/definitions-go/translation"
 	"time"
+
+	"github.com/kubex/definitions-go/translation"
 )
 
 type Property struct {
@@ -103,4 +104,5 @@ const (
 	PropertyDisplayTypePhone     PropertyDisplayType = "phone"      // phone
 	PropertyDisplayTypeAmount    PropertyDisplayType = "amount"     // amount + currency
 	PropertyDisplayTypeAddress   PropertyDisplayType = "address"    // string
+	PropertyDisplayTypePassword  PropertyDisplayType = "password"   // string
 )
