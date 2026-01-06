@@ -34,7 +34,7 @@ type PropertyValue struct {
 	Number int64             `json:"number,omitempty"`
 	Bool   bool              `json:"bool,omitempty"`
 	Float  float64           `json:"float,omitempty"`
-	Time   time.Time         `json:"time,omitempty"`
+	Time   *time.Time        `json:"time,omitempty"`
 	Set    []string          `json:"set,omitempty"`
 	Map    map[string][]byte `json:"map,omitempty"`
 }
