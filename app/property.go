@@ -30,13 +30,13 @@ const (
 )
 
 type PropertyValue struct {
-	Text   string
-	Number int64
-	Bool   bool
-	Float  float64
-	Time   time.Time
-	Set    []string
-	Map    map[string][]byte
+	Text   string            `json:"text,omitempty"`
+	Number int64             `json:"number,omitempty"`
+	Bool   bool              `json:"bool,omitempty"`
+	Float  float64           `json:"float,omitempty"`
+	Time   time.Time         `json:"time,omitempty"`
+	Set    []string          `json:"set,omitempty"`
+	Map    map[string][]byte `json:"map,omitempty"`
 }
 
 type PropertyDefinition struct {
