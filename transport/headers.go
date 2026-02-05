@@ -94,6 +94,3 @@ const ResponseColor = "x-kubex-color"
 
 // ResponseClearValue clear the value of an input field
 const ResponseClearValue = "x-kubex-clear-value"
-
-// ResponseScriptResource URL of a script resource to load in the browser
-const ResponseScriptResource = "x-kubex-script-resource"
