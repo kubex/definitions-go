@@ -39,6 +39,9 @@ const RequestChannels = "x-kx-channels"
 // RequestConfiguration JSON configuration data for the app k:v pairs
 const RequestConfiguration = "x-kx-configuration"
 
+// RequestCallerApp identifies the calling app in an RPC request
+const RequestCallerApp = "x-kx-caller-app"
+
 const RequestEditorID = "x-kx-editor-id"
 const RequestFetchStyle = "x-kx-fetch-style"
 const RequestContextData = "x-kx-context-data"

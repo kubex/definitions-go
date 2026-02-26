@@ -24,8 +24,10 @@ type Definition struct {
 	Icon               string   `json:"icon,omitempty"` // Default icon to use for this application
 	SkipCSRFValidation bool     `json:"skipCSRFValidation,omitempty"`
 
-	Dependencies    []GlobalAppID      `json:"dependencies,omitempty"` // Other applications this app depends on
-	Permissions     []Permission       `json:"permissions,omitempty"`  // Permissions made available by this application
+	Permissions []Permission `json:"permissions,omitempty"` // Permissions made available by this application
+
+	Operations      []Operation        `json:"operations,omitempty"`   // APIs available for app-to-app calls
+	Dependencies    []Dependency       `json:"dependencies,omitempty"` // APIs this app needs from other apps
 	Roles           []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application
 	Paths           []Path             `json:"paths,omitempty"`
 	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
