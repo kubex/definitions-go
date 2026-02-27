@@ -12,9 +12,13 @@ import (
 const VendorAppID = "kx" // setting your application ID to this value should be done for vendor shared
 
 type Definition struct {
-	ID          GlobalAppID `json:"id"`
-	Endpoint    string      `json:"endpoint,omitempty"`
-	DefaultPath string      `json:"defaultPath,omitempty"` // Default path to use when opening the app
+	ID GlobalAppID `json:"id"`
+
+	Endpoint    string `json:"endpoint,omitempty"`
+	MCPEndpoint string `json:"mcpEndpoint,omitempty"`
+	APIEndpoint string `json:"apiEndpoint,omitempty"`
+
+	DefaultPath string `json:"defaultPath,omitempty"` // Default path to use when opening the app
 
 	Name        translation.Text `json:"name"`
 	Description translation.Text `json:"description,omitempty"`
@@ -26,6 +30,7 @@ type Definition struct {
 
 	Permissions []Permission `json:"permissions,omitempty"` // Permissions made available by this application
 
+	MCPCapabilities []MCPCapability    // Capabilities this app has when running within the MCP, e.g. to receive events or link with other apps
 	Operations      []Operation        `json:"operations,omitempty"`   // APIs available for app-to-app calls
 	Dependencies    []Dependency       `json:"dependencies,omitempty"` // APIs this app needs from other apps
 	Roles           []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application

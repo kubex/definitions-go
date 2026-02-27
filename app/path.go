@@ -11,6 +11,8 @@ const (
 )
 
 type Path struct {
+	AccessRequest
+
 	ID     string `json:"id"`               // Allow the path to be linked
 	Path   string `json:"path"`             // with replacements, matches start, locating the most specific
 	Method string `json:"method,omitempty"` // HTTP Method, blank for any
@@ -22,12 +24,6 @@ type Path struct {
 	HideBreadcrumb bool `json:"hideBreadcrumb,omitempty"` // Hide the breadcrumb when this path is active
 	PromptOnExit   bool `json:"promptOnExit,omitempty"`   // Prompt the user when they try to leave the page
 	HoverCard      bool `json:"hoverCard,omitempty"`      // If this path can be displayed as a hoverCard
-
-	RequestPermissions  []ScopedKey `json:"requestPermissions,omitempty"`  // Permissions that should be sent to this path
-	RequiredPermissions []ScopedKey `json:"requiredPermissions,omitempty"` // Permissions that must be set for the user to call this page
-
-	BuiltInResources []BuiltInResource `json:"builtInResources,omitempty"`
-	RequestConfig    []ScopedKey       `json:"requestConfig,omitempty"` // Configuration values that should be sent to this path
 
 	Navigation []EntryPoint `json:"navigation,omitempty"`
 	Actions    []EntryPoint `json:"actions,omitempty"`

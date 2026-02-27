@@ -1,9 +1,10 @@
 package app
 
 import (
+	"strings"
+
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
-	"strings"
 )
 
 type Category string
