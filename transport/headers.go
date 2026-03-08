@@ -97,3 +97,7 @@ const ResponseColor = "x-kubex-color"
 
 // ResponseClearValue clear the value of an input field
 const ResponseClearValue = "x-kubex-clear-value"
+
+const RequestPreferredLabels = "x-kx-preferred-labels"
+const RequestConnectionID = "x-kx-connection-id"
+const RequestConnectionToken = "x-kx-connection-token"
