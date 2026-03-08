@@ -61,8 +61,9 @@ type Definition struct {
 
 	PermittedProxyPaths []string `json:"permittedProxyPaths,omitempty"` // Paths that can be proxied by the platform, without auth / modification
 
-	SystemApp    bool     `json:"systemApp,omitempty"`    // Only system users can see/access this app
-	AllowedUsers []string `json:"allowedUsers,omitempty"` // Specific user IDs with access; empty = no restriction
+	SystemApp         bool     `json:"systemApp,omitempty"`         // Only system users can see/access this app
+	AllowedUsers      []string `json:"allowedUsers,omitempty"`      // Specific user IDs with access; empty = no restriction
+	ProvideBlueprints bool     `json:"provideBlueprints,omitempty"` // App serves blueprint definitions via /_kubex/blueprints
 
 	Hash string `json:"hash,omitempty"` // Hash of the definition for change detection, the latest hash can be returned in HealthResponse
 }
