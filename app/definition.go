@@ -32,8 +32,10 @@ type Definition struct {
 
 	MCPCapabilities []MCPCapability    // Capabilities this app has when running within the MCP, e.g. to receive events or link with other apps
 	Operations      []Operation        `json:"operations,omitempty"`   // APIs available for app-to-app calls
-	Dependencies    []Dependency       `json:"dependencies,omitempty"` // APIs this app needs from other apps
-	Roles           []PermissionPolicy `json:"roles,omitempty"`        // Roles made available by this application
+	Dependencies         []Dependency           `json:"dependencies,omitempty"`         // APIs this app needs from other apps
+	Providers            []ProviderRegistration `json:"providers,omitempty"`            // Services this app provides
+	ProviderDependencies []ProviderDependency   `json:"providerDependencies,omitempty"` // Provider types this app needs
+	Roles                []PermissionPolicy     `json:"roles,omitempty"`                // Roles made available by this application
 	Paths           []Path             `json:"paths,omitempty"`
 	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
 	ActivationSteps []ActivationStep   `json:"activationSteps,omitempty"`
