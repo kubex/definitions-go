@@ -30,21 +30,22 @@ type Definition struct {
 
 	Permissions []Permission `json:"permissions,omitempty"` // Permissions made available by this application
 
-	MCPCapabilities []MCPCapability    // Capabilities this app has when running within the MCP, e.g. to receive events or link with other apps
-	Operations      []Operation        `json:"operations,omitempty"`   // APIs available for app-to-app calls
+	MCPCapabilities      []MCPCapability        // Capabilities this app has when running within the MCP, e.g. to receive events or link with other apps
+	Operations           []Operation            `json:"operations,omitempty"`           // APIs available for app-to-app calls
 	Dependencies         []Dependency           `json:"dependencies,omitempty"`         // APIs this app needs from other apps
 	Providers            []ProviderRegistration `json:"providers,omitempty"`            // Services this app provides
 	ProviderDependencies []ProviderDependency   `json:"providerDependencies,omitempty"` // Provider types this app needs
 	Roles                []PermissionPolicy     `json:"roles,omitempty"`                // Roles made available by this application
-	Paths           []Path             `json:"paths,omitempty"`
-	Unify           []IntegrationPoint `json:"unify,omitempty"` // How to link with other applications
-	ActivationSteps []ActivationStep   `json:"activationSteps,omitempty"`
-	ListenToEvents  []ScopedKey        `json:"listenToEvents,omitempty"`
-	Navigation      []Navigation       `json:"navigation,omitempty"` // App navigation
-	NavigationUri   string             `json:"navigationUri,omitempty"`
+	Paths                []Path                 `json:"paths,omitempty"`
+	Unify                []IntegrationPoint     `json:"unify,omitempty"` // How to link with other applications
+	ActivationSteps      []ActivationStep       `json:"activationSteps,omitempty"`
+	ListenToEvents       []ScopedKey            `json:"listenToEvents,omitempty"`
+	Navigation           []Navigation           `json:"navigation,omitempty"` // App navigation
+	NavigationUri        string                 `json:"navigationUri,omitempty"`
 
 	Configuration     []SettingsPage
-	ConfigurationPath string // the path to use when settings are managed by the app
+	ConfigurationNav  []EntryPoint `json:"configurationNav,omitempty"` // Configuration nav items are locked to the bottom of the app nav
+	ConfigurationPath string       // the path to use when settings are managed by the app
 
 	Homepage       string `json:"homepage,omitempty"`       // https:// url
 	TermsOfService string `json:"termsOfService,omitempty"` // https:// url
