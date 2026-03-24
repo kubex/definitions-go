@@ -1,3 +1,4 @@
+// Deprecated: use github.com/openbyte-os/sdk-go instead.
 module github.com/kubex/definitions-go
 
 go 1.23.0
